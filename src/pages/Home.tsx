@@ -43,13 +43,14 @@ const Home = () => {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="pt-24 pb-12 px-4 relative overflow-hidden">
-        <div 
-          className="absolute right-0 top-1/2 -translate-y-1/2 w-1/3 h-auto opacity-10 dark:opacity-5"
-          style={{ backgroundImage: `url(${logo})`, backgroundSize: 'contain', backgroundRepeat: 'no-repeat', backgroundPosition: 'center', aspectRatio: '16/9' }}
-        />
-        <div className="container mx-auto text-center relative z-10">
+      <section className="pt-24 pb-12 px-4">
+        <div className="container mx-auto text-center">
           <div className="max-w-4xl mx-auto space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+            <img 
+              src={logo} 
+              alt="Lien On Us" 
+              className="mx-auto w-full max-w-md md:max-w-lg mb-8"
+            />
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               <span className="bg-gradient-to-r from-primary via-primary-glow to-secondary bg-clip-text text-transparent">
                 Lien On Us
