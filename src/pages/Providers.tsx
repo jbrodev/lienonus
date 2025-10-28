@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -74,8 +75,17 @@ const specialties = [
 ];
 
 const Providers = () => {
+  const [searchParams] = useSearchParams();
   const [selectedSpecialty, setSelectedSpecialty] = useState("All Specialties");
   const [searchTerm, setSearchTerm] = useState("");
+
+  // Apply search from URL parameters
+  useEffect(() => {
+    const urlSearch = searchParams.get("search");
+    if (urlSearch) {
+      setSearchTerm(urlSearch);
+    }
+  }, [searchParams]);
 
   const filteredProviders = providers.filter((provider) => {
     const matchesSpecialty =
