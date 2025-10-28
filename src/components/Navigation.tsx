@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Menu, X, Search } from "lucide-react";
 import { useState } from "react";
 import ThemeToggle from "./ThemeToggle";
+import logo from "@/assets/logo.png";
 
 const Navigation = () => {
   const location = useLocation();
@@ -38,9 +39,7 @@ const Navigation = () => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
-            <div className="font-bold text-2xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              LIEN ON US
-            </div>
+            <img src={logo} alt="Lien On Us" className="h-12 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
