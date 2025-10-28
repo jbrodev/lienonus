@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import ReferralForm from "@/components/ReferralForm";
-import ProviderSearch from "@/components/ProviderSearch";
 import { Clock, Users, Shield, Award, ArrowRight } from "lucide-react";
 
 const Home = () => {
@@ -48,11 +47,8 @@ const Home = () => {
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
               An elite network of medical providers all accepting liens. Get the care you need now.
             </p>
-            <div className="mt-8">
-              <ProviderSearch />
-            </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
-              <Button asChild size="lg" className="text-lg" variant="outline">
+              <Button asChild size="lg" className="text-lg">
                 <Link to="/providers">
                   Browse All Providers <ArrowRight className="ml-2" size={20} />
                 </Link>

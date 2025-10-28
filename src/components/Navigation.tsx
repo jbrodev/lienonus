@@ -1,12 +1,24 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Menu, X, Search } from "lucide-react";
 import { useState } from "react";
 import ThemeToggle from "./ThemeToggle";
 
 const Navigation = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchTerm.trim()) {
+      navigate(`/providers?search=${encodeURIComponent(searchTerm.trim())}`);
+      setSearchTerm("");
+      setIsMenuOpen(false);
+    }
+  };
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -32,7 +44,7 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden md:flex items-center space-x-4">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -46,6 +58,15 @@ const Navigation = () => {
                 {link.name}
               </Link>
             ))}
+            <form onSubmit={handleSearch} className="relative">
+              <Search className="absolute left-2.5 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={16} />
+              <Input
+                placeholder="Search providers..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-9 h-9 w-48 text-sm"
+              />
+            </form>
             <Button onClick={scrollToReferral}>Make a Referral</Button>
             <ThemeToggle />
           </div>
@@ -79,6 +100,15 @@ const Navigation = () => {
                 {link.name}
               </Link>
             ))}
+            <form onSubmit={handleSearch} className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={18} />
+              <Input
+                placeholder="Search providers..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10 h-10"
+              />
+            </form>
             <Button onClick={scrollToReferral} className="w-full">
               Make a Referral
             </Button>
