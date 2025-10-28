@@ -4,6 +4,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import ReferralForm from "@/components/ReferralForm";
 import { Clock, Users, Shield, Award, ArrowRight } from "lucide-react";
+import availabilityImg from "@/assets/24-7-availability.jpg";
+import networkImg from "@/assets/elite-network.jpg";
+import lienImg from "@/assets/lien-acceptance.jpg";
+import serviceImg from "@/assets/trusted-service.jpg";
 
 const Home = () => {
   const features = [
@@ -11,21 +15,25 @@ const Home = () => {
       icon: Clock,
       title: "24/7 Availability",
       description: "Access our network of medical providers any time, day or night",
+      image: availabilityImg,
     },
     {
       icon: Users,
       title: "Elite Network",
       description: "Carefully vetted medical professionals across all specialties",
+      image: networkImg,
     },
     {
       icon: Shield,
       title: "Lien Acceptance",
       description: "All providers accept liens - get care now, pay later",
+      image: lienImg,
     },
     {
       icon: Award,
       title: "Trusted Service",
       description: "Dedicated support for both patients and legal professionals",
+      image: serviceImg,
     },
   ];
 
@@ -74,9 +82,13 @@ const Home = () => {
             {features.map((feature, index) => (
               <Card
                 key={index}
-                className="border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                className="border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 overflow-hidden relative"
               >
-                <CardContent className="pt-6 text-center space-y-4">
+                <div 
+                  className="absolute inset-0 bg-cover bg-center opacity-15"
+                  style={{ backgroundImage: `url(${feature.image})` }}
+                />
+                <CardContent className="pt-6 text-center space-y-4 relative z-10">
                   <div className="w-16 h-16 mx-auto bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center">
                     <feature.icon className="w-8 h-8 text-primary-foreground" />
                   </div>
