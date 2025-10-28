@@ -55,7 +55,7 @@ const Home = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Why Choose Lien On Us?
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">We connect injured patients with top-tier medical professionals who understand lien-based care. Trusted by top professionals for 25+ years!</p>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">We connect injured patients with elite medical professionals who understand lien-based care. Trusted by top professionals for 25+ years!</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
