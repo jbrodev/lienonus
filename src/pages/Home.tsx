@@ -45,11 +45,11 @@ const Home = () => {
       {/* Hero Section */}
       <section className="pt-24 pb-12 px-4">
         <div className="container mx-auto text-center">
-          <div className="max-w-4xl mx-auto space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+          <div className="max-w-4xl mx-auto space-y-3 animate-in fade-in slide-in-from-bottom-4 duration-1000">
             <img 
               src={logo} 
               alt="Lien On Us" 
-              className="mx-auto w-full max-w-md md:max-w-lg mb-4"
+              className="mx-auto w-full max-w-md md:max-w-lg mb-1"
             />
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               <span className="bg-gradient-to-r from-primary via-primary-glow to-secondary bg-clip-text text-transparent">
