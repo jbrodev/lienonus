@@ -14,30 +14,7 @@ export type Database = {
   }
   public: {
     Tables: {
-      provider_analytics: {
-        Row: {
-          created_at: string
-          event_type: string
-          id: string
-          provider_id: number
-          provider_name: string
-        }
-        Insert: {
-          created_at?: string
-          event_type: string
-          id?: string
-          provider_id: number
-          provider_name: string
-        }
-        Update: {
-          created_at?: string
-          event_type?: string
-          id?: string
-          provider_id?: number
-          provider_name?: string
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Views: {
       [_ in never]: never

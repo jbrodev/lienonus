@@ -1,20 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, MapPin, Phone, Mail, Eye } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { Search, MapPin, Phone, Mail } from "lucide-react";
 
-// Mock provider data with zip codes
+// Mock provider data
 const providers = [
   {
     id: 1,
     name: "Dr. Korey Tovar",
     specialty: "Anime Anatomy",
     location: "Los Angeles, CA",
-    zipCode: "90001",
     phone: "(555) 123-4567",
     email: "dr.tovar@example.com",
     acceptsLiens: true,
@@ -24,7 +22,6 @@ const providers = [
     name: "Dr. James Chen",
     specialty: "Neurology",
     location: "San Francisco, CA",
-    zipCode: "94102",
     phone: "(555) 234-5678",
     email: "dr.chen@example.com",
     acceptsLiens: true,
@@ -34,7 +31,6 @@ const providers = [
     name: "Dr. Emily Rodriguez",
     specialty: "Physical Therapy",
     location: "San Diego, CA",
-    zipCode: "92101",
     phone: "(555) 345-6789",
     email: "dr.rodriguez@example.com",
     acceptsLiens: true,
@@ -44,7 +40,6 @@ const providers = [
     name: "Dr. Michael Thompson",
     specialty: "Chiropractic",
     location: "Sacramento, CA",
-    zipCode: "95814",
     phone: "(555) 456-7890",
     email: "dr.thompson@example.com",
     acceptsLiens: true,
@@ -54,7 +49,6 @@ const providers = [
     name: "Dr. Lisa Anderson",
     specialty: "Pain Management",
     location: "Los Angeles, CA",
-    zipCode: "90015",
     phone: "(555) 567-8901",
     email: "dr.anderson@example.com",
     acceptsLiens: true,
@@ -64,7 +58,6 @@ const providers = [
     name: "Dr. David Kim",
     specialty: "Orthopedic Surgery",
     location: "San Jose, CA",
-    zipCode: "95113",
     phone: "(555) 678-9012",
     email: "dr.kim@example.com",
     acceptsLiens: true,
@@ -83,65 +76,13 @@ const specialties = [
 const Providers = () => {
   const [selectedSpecialty, setSelectedSpecialty] = useState("All Specialties");
   const [searchTerm, setSearchTerm] = useState("");
-  const [viewCounts, setViewCounts] = useState<Record<number, number>>({});
-
-  // Track provider views
-  const trackProviderView = async (providerId: number, providerName: string) => {
-    try {
-      await supabase.from("provider_analytics").insert({
-        provider_id: providerId,
-        provider_name: providerName,
-        event_type: "view",
-      });
-    } catch (error) {
-      console.error("Error tracking provider view:", error);
-    }
-  };
-
-  // Track provider clicks
-  const trackProviderClick = async (providerId: number, providerName: string) => {
-    try {
-      await supabase.from("provider_analytics").insert({
-        provider_id: providerId,
-        provider_name: providerName,
-        event_type: "click",
-      });
-    } catch (error) {
-      console.error("Error tracking provider click:", error);
-    }
-  };
-
-  // Fetch view counts for all providers
-  useEffect(() => {
-    const fetchViewCounts = async () => {
-      try {
-        const { data, error } = await supabase
-          .from("provider_analytics")
-          .select("provider_id")
-          .eq("event_type", "view");
-
-        if (error) throw error;
-
-        const counts: Record<number, number> = {};
-        data?.forEach((record) => {
-          counts[record.provider_id] = (counts[record.provider_id] || 0) + 1;
-        });
-        setViewCounts(counts);
-      } catch (error) {
-        console.error("Error fetching view counts:", error);
-      }
-    };
-
-    fetchViewCounts();
-  }, []);
 
   const filteredProviders = providers.filter((provider) => {
     const matchesSpecialty =
       selectedSpecialty === "All Specialties" || provider.specialty === selectedSpecialty;
     const matchesSearch =
       provider.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      provider.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      provider.zipCode.includes(searchTerm);
+      provider.location.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesSpecialty && matchesSearch;
   });
 
@@ -168,7 +109,7 @@ const Providers = () => {
             <div className="relative max-w-md mx-auto">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={20} />
               <Input
-                placeholder="Search by name, location, or zip code..."
+                placeholder="Search by name or location..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10"
@@ -195,11 +136,7 @@ const Providers = () => {
             {filteredProviders.map((provider) => (
               <Card
                 key={provider.id}
-                className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-border hover:border-primary/50 cursor-pointer"
-                onClick={() => {
-                  trackProviderClick(provider.id, provider.name);
-                  trackProviderView(provider.id, provider.name);
-                }}
+                className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-border hover:border-primary/50"
               >
                 <CardHeader>
                   <div className="flex items-start justify-between">
@@ -209,18 +146,12 @@ const Providers = () => {
                         {provider.specialty}
                       </Badge>
                     </div>
-                    {viewCounts[provider.id] && (
-                      <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                        <Eye size={14} />
-                        <span>{viewCounts[provider.id]}</span>
-                      </div>
-                    )}
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-3">
                   <div className="flex items-center text-sm text-muted-foreground">
                     <MapPin size={16} className="mr-2 text-primary" />
-                    {provider.location} {provider.zipCode}
+                    {provider.location}
                   </div>
                   <div className="flex items-center text-sm text-muted-foreground">
                     <Phone size={16} className="mr-2 text-primary" />
