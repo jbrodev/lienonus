@@ -8,6 +8,7 @@ import availabilityImg from "@/assets/24-7-availability.jpg";
 import networkImg from "@/assets/elite-network.jpg";
 import lienImg from "@/assets/lien-acceptance.jpg";
 import serviceImg from "@/assets/trusted-service.jpg";
+import logo from "@/assets/logo.jpg";
 
 const Home = () => {
   const features = [
@@ -42,8 +43,12 @@ const Home = () => {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="pt-24 pb-12 px-4">
-        <div className="container mx-auto text-center">
+      <section className="pt-24 pb-12 px-4 relative overflow-hidden">
+        <div 
+          className="absolute inset-0 bg-cover bg-center opacity-10 dark:opacity-5"
+          style={{ backgroundImage: `url(${logo})` }}
+        />
+        <div className="container mx-auto text-center relative z-10">
           <div className="max-w-4xl mx-auto space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-1000">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               <span className="bg-gradient-to-r from-primary via-primary-glow to-secondary bg-clip-text text-transparent">
