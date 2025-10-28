@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import ThemeToggle from "./ThemeToggle";
 
 const Navigation = () => {
   const location = useLocation();
@@ -10,8 +11,15 @@ const Navigation = () => {
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Find Providers", path: "/providers" },
-    { name: "Make a Referral", path: "/referral" },
   ];
+
+  const scrollToReferral = () => {
+    const referralSection = document.getElementById('referral-form');
+    if (referralSection) {
+      referralSection.scrollIntoView({ behavior: 'smooth' });
+      setIsMenuOpen(false);
+    }
+  };
 
   return (
     <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm border-b border-border z-50">
@@ -24,7 +32,7 @@ const Navigation = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
@@ -38,19 +46,20 @@ const Navigation = () => {
                 {link.name}
               </Link>
             ))}
-            <Button asChild>
-              <Link to="/referral">Get Started</Link>
-            </Button>
+            <Button onClick={scrollToReferral}>Make a Referral</Button>
+            <ThemeToggle />
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          <div className="md:hidden flex items-center gap-2">
+            <ThemeToggle />
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -70,10 +79,8 @@ const Navigation = () => {
                 {link.name}
               </Link>
             ))}
-            <Button asChild className="w-full">
-              <Link to="/referral" onClick={() => setIsMenuOpen(false)}>
-                Get Started
-              </Link>
+            <Button onClick={scrollToReferral} className="w-full">
+              Make a Referral
             </Button>
           </div>
         )}
