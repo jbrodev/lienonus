@@ -49,7 +49,7 @@ const Home = () => {
             <img 
               src={logo} 
               alt="Lien On Us" 
-              className="mx-auto w-full max-w-md md:max-w-lg mb-8"
+              className="mx-auto w-full max-w-md md:max-w-lg mb-4"
             />
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               <span className="bg-gradient-to-r from-primary via-primary-glow to-secondary bg-clip-text text-transparent">
