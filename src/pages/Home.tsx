@@ -85,7 +85,7 @@ const Home = () => {
                 className="border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 overflow-hidden relative"
               >
                 <div 
-                  className="absolute inset-0 bg-cover bg-center opacity-15"
+                  className="absolute inset-0 bg-cover bg-center opacity-30 dark:opacity-15"
                   style={{ backgroundImage: `url(${feature.image})` }}
                 />
                 <CardContent className="pt-6 text-center space-y-4 relative z-10">
@@ -93,7 +93,7 @@ const Home = () => {
                     <feature.icon className="w-8 h-8 text-primary-foreground" />
                   </div>
                   <h3 className="text-xl font-semibold">{feature.title}</h3>
-                  <p className="text-muted-foreground">{feature.description}</p>
+                  <p className="text-foreground/70 dark:text-muted-foreground">{feature.description}</p>
                 </CardContent>
               </Card>
             ))}
