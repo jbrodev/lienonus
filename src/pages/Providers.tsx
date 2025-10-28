@@ -5,7 +5,9 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, MapPin, Phone, Mail } from "lucide-react";
+import { Search, MapPin, Phone, Mail, ExternalLink } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 // Mock provider data
 const providers = [
@@ -16,6 +18,7 @@ const providers = [
     location: "Los Angeles, CA",
     phone: "(555) 123-4567",
     email: "dr.tovar@example.com",
+    website: "https://example.com/dr-tovar",
     acceptsLiens: true,
   },
   {
@@ -25,6 +28,7 @@ const providers = [
     location: "San Francisco, CA",
     phone: "(555) 234-5678",
     email: "dr.chen@example.com",
+    website: "https://example.com/dr-chen",
     acceptsLiens: true,
   },
   {
@@ -34,6 +38,7 @@ const providers = [
     location: "San Diego, CA",
     phone: "(555) 345-6789",
     email: "dr.rodriguez@example.com",
+    website: "https://example.com/dr-rodriguez",
     acceptsLiens: true,
   },
   {
@@ -43,6 +48,7 @@ const providers = [
     location: "Sacramento, CA",
     phone: "(555) 456-7890",
     email: "dr.thompson@example.com",
+    website: "https://example.com/dr-thompson",
     acceptsLiens: true,
   },
   {
@@ -52,6 +58,7 @@ const providers = [
     location: "Los Angeles, CA",
     phone: "(555) 567-8901",
     email: "dr.anderson@example.com",
+    website: "https://example.com/dr-anderson",
     acceptsLiens: true,
   },
   {
@@ -61,6 +68,7 @@ const providers = [
     location: "San Jose, CA",
     phone: "(555) 678-9012",
     email: "dr.kim@example.com",
+    website: "https://example.com/dr-kim",
     acceptsLiens: true,
   },
 ];
@@ -78,6 +86,37 @@ const Providers = () => {
   const [searchParams] = useSearchParams();
   const [selectedSpecialty, setSelectedSpecialty] = useState("All Specialties");
   const [searchTerm, setSearchTerm] = useState("");
+
+  const trackProviderClick = async (providerId: number, providerName: string, eventType: string) => {
+    try {
+      const { error } = await (supabase as any)
+        .from('provider_analytics')
+        .insert({
+          provider_id: providerId,
+          provider_name: providerName,
+          event_type: eventType,
+        });
+
+      if (error) {
+        console.error('Error tracking click:', error);
+      }
+    } catch (err) {
+      console.error('Error tracking click:', err);
+    }
+  };
+
+  const handleVisitWebsite = (provider: typeof providers[0]) => {
+    trackProviderClick(provider.id, provider.name, 'website_click');
+    window.open(provider.website, '_blank');
+  };
+
+  const handleEmailClick = (provider: typeof providers[0]) => {
+    trackProviderClick(provider.id, provider.name, 'email_click');
+  };
+
+  const handlePhoneClick = (provider: typeof providers[0]) => {
+    trackProviderClick(provider.id, provider.name, 'phone_click');
+  };
 
   // Apply search from URL parameters
   useEffect(() => {
@@ -163,18 +202,32 @@ const Providers = () => {
                     <MapPin size={16} className="mr-2 text-primary" />
                     {provider.location}
                   </div>
-                  <div className="flex items-center text-sm text-muted-foreground">
+                  <button
+                    onClick={() => handlePhoneClick(provider)}
+                    className="flex items-center text-sm text-muted-foreground hover:text-primary transition-colors w-full"
+                  >
                     <Phone size={16} className="mr-2 text-primary" />
                     {provider.phone}
-                  </div>
-                  <div className="flex items-center text-sm text-muted-foreground">
+                  </button>
+                  <button
+                    onClick={() => handleEmailClick(provider)}
+                    className="flex items-center text-sm text-muted-foreground hover:text-primary transition-colors w-full"
+                  >
                     <Mail size={16} className="mr-2 text-primary" />
                     {provider.email}
-                  </div>
-                  <div className="pt-2">
+                  </button>
+                  <div className="pt-2 space-y-2">
                     <Badge variant="outline" className="text-secondary border-secondary">
                       ✓ Accepts Liens
                     </Badge>
+                    <Button 
+                      onClick={() => handleVisitWebsite(provider)}
+                      variant="outline" 
+                      size="sm" 
+                      className="w-full"
+                    >
+                      Visit Website <ExternalLink size={14} className="ml-2" />
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
