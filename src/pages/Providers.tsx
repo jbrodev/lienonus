@@ -10,11 +10,11 @@ import { Search, MapPin, Phone, Mail } from "lucide-react";
 const providers = [
   {
     id: 1,
-    name: "Dr. Sarah Martinez",
-    specialty: "Orthopedic Surgery",
+    name: "Dr. Korey Tovar",
+    specialty: "Anime Anatomy",
     location: "Los Angeles, CA",
     phone: "(555) 123-4567",
-    email: "dr.martinez@example.com",
+    email: "dr.tovar@example.com",
     acceptsLiens: true,
   },
   {
