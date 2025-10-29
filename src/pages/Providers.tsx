@@ -131,7 +131,8 @@ const Providers = () => {
       selectedSpecialty === "All Specialties" || provider.specialty === selectedSpecialty;
     const matchesSearch =
       provider.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      provider.location.toLowerCase().includes(searchTerm.toLowerCase());
+      provider.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      provider.specialty.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesSpecialty && matchesSearch;
   });
 
@@ -158,7 +159,7 @@ const Providers = () => {
             <div className="relative max-w-md mx-auto">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" size={20} />
               <Input
-                placeholder="Search by name or location..."
+                placeholder="Search by name, location, or specialty..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10"
