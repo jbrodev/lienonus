@@ -104,7 +104,7 @@ const Home = () => {
                     <feature.icon className="w-8 h-8 text-primary-foreground" />
                   </div>
                   <h3 className="text-xl font-semibold">{feature.title}</h3>
-                  <p className="text-foreground/70 dark:text-muted-foreground">{feature.description}</p>
+                  <p className="text-muted-foreground">{feature.description}</p>
                 </CardContent>
               </Card>
             ))}
