@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import ReferralForm from "@/components/ReferralForm";
 import TestimonialsBanner from "@/components/TestimonialsBanner";
-import { Clock, Users, Shield, Award, ArrowRight, Phone, Mail, Facebook, Instagram } from "lucide-react";
+import { Clock, Users, Shield, Award, ArrowRight } from "lucide-react";
 import availabilityImg from "@/assets/24-7-availability.jpg";
 import networkImg from "@/assets/elite-network.jpg";
 import lienImg from "@/assets/lien-acceptance.jpg";
@@ -140,70 +140,10 @@ const Home = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-card border-t border-border py-8 px-4">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-            {/* Contact Info */}
-            <div className="text-center md:text-left space-y-3">
-              <h3 className="text-lg font-semibold text-foreground">Contact Us</h3>
-              <div className="space-y-2">
-                <a 
-                  href="tel:323-873-6336" 
-                  className="flex items-center justify-center md:justify-start gap-2 text-muted-foreground hover:text-primary transition-colors"
-                >
-                  <Phone size={18} />
-                  <span>323-873-6336</span>
-                </a>
-                <a 
-                  href="mailto:referrals@lienonusmedical.com" 
-                  className="flex items-center justify-center md:justify-start gap-2 text-muted-foreground hover:text-primary transition-colors"
-                >
-                  <Mail size={18} />
-                  <span>referrals@lienonusmedical.com</span>
-                </a>
-              </div>
-            </div>
-
-            {/* Service Area */}
-            <div className="text-center space-y-3">
-              <h3 className="text-lg font-semibold text-foreground">Service Area</h3>
-              <p className="text-muted-foreground">
-                Proudly serving all of California
-              </p>
-              <p className="text-sm text-muted-foreground">
-                24/7 Medical Provider Network
-              </p>
-            </div>
-
-            {/* Social Media */}
-            <div className="text-center md:text-right space-y-3">
-              <h3 className="text-lg font-semibold text-foreground">Follow Us</h3>
-              <div className="flex items-center justify-center md:justify-end gap-4">
-                <a 
-                  href="https://www.facebook.com/lienonusmedical/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-primary/10 hover:bg-primary/20 flex items-center justify-center text-primary hover:scale-110 transition-all duration-300"
-                  aria-label="Facebook"
-                >
-                  <Facebook size={20} />
-                </a>
-                <a 
-                  href="https://www.instagram.com/lienonusmed/" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-primary/10 hover:bg-primary/20 flex items-center justify-center text-primary hover:scale-110 transition-all duration-300"
-                  aria-label="Instagram"
-                >
-                  <Instagram size={20} />
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className="text-center pt-6 border-t border-border text-muted-foreground">
-            <p>&copy; 2024 Lien On Us. All rights reserved.</p>
-          </div>
+      <footer className="bg-card border-t border-border py-6 px-4">
+        <div className="container mx-auto text-center space-y-2">
+          <p className="text-muted-foreground">&copy; 2024 Lien On Us. All rights reserved.</p>
+          <p className="text-sm text-muted-foreground">Proudly serving all of California • 24/7 Medical Provider Network</p>
         </div>
       </footer>
     </div>
