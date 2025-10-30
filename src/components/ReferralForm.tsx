@@ -56,11 +56,34 @@ const ReferralForm = () => {
     },
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log("Referral submitted:", data);
-    setIsSubmitted(true);
-    toast.success("Referral submitted successfully! We'll contact you shortly.");
-    form.reset();
+  const onSubmit = async (data: FormData) => {
+    try {
+      const { supabase } = await import("@/integrations/supabase/client");
+      
+      const { error } = await supabase.functions.invoke("send-referral-email", {
+        body: {
+          patientName: data.patientName,
+          patientPhone: data.patientPhone,
+          patientEmail: data.patientEmail,
+          dateOfInjury: new Date().toLocaleDateString(),
+          injuryType: data.injuryType,
+          referringName: data.referringParty,
+          referringCompany: data.referringParty,
+          referringPhone: data.referringPhone,
+          referringEmail: data.referringEmail,
+          notes: data.additionalNotes,
+        },
+      });
+
+      if (error) throw error;
+
+      setIsSubmitted(true);
+      toast.success("Referral submitted successfully! We'll contact you shortly.");
+      form.reset();
+    } catch (error) {
+      console.error("Error submitting referral:", error);
+      toast.error("Failed to submit referral. Please try again or contact us directly.");
+    }
   };
 
   if (isSubmitted) {
