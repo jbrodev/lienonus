@@ -176,11 +176,11 @@ const providers = [
 const specialties = [
   "All Specialties",
   "Acupuncture",
-  "Orthopedic Surgery",
-  "Neurology",
-  "Physical Therapy",
   "Chiropractic",
+  "Neurology",
+  "Orthopedic Surgery",
   "Pain Management",
+  "Physical Therapy",
 ];
 
 const Providers = () => {

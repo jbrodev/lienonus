@@ -227,12 +227,12 @@ const ReferralForm = () => {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="orthopedic">Orthopedic Surgery</SelectItem>
-                        <SelectItem value="neurology">Neurology</SelectItem>
-                        <SelectItem value="physical-therapy">Physical Therapy</SelectItem>
-                        <SelectItem value="chiropractic">Chiropractic</SelectItem>
                         <SelectItem value="acupuncture">Acupuncture</SelectItem>
+                        <SelectItem value="chiropractic">Chiropractic</SelectItem>
+                        <SelectItem value="neurology">Neurology</SelectItem>
+                        <SelectItem value="orthopedic">Orthopedic Surgery</SelectItem>
                         <SelectItem value="pain-management">Pain Management</SelectItem>
+                        <SelectItem value="physical-therapy">Physical Therapy</SelectItem>
                         <SelectItem value="other">Other</SelectItem>
                       </SelectContent>
                     </Select>
