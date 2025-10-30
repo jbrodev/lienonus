@@ -15,6 +15,7 @@ interface ReferralEmailRequest {
   patientEmail?: string;
   dateOfInjury: string;
   injuryType: string;
+  specialty: string;
   referringName: string;
   referringCompany: string;
   referringPhone: string;
@@ -47,10 +48,10 @@ const handler = async (req: Request): Promise<Response> => {
         ${data.patientEmail ? `<p><strong>Email:</strong> ${data.patientEmail}</p>` : ''}
         <p><strong>Date of Injury:</strong> ${data.dateOfInjury}</p>
         <p><strong>Type of Injury:</strong> ${data.injuryType}</p>
+        <p><strong>Specialty Required:</strong> ${data.specialty}</p>
         
         <h2>Referring Party Information</h2>
-        <p><strong>Name:</strong> ${data.referringName}</p>
-        <p><strong>Company:</strong> ${data.referringCompany}</p>
+        <p><strong>Referring Party:</strong> ${data.referringName}</p>
         <p><strong>Phone:</strong> ${data.referringPhone}</p>
         <p><strong>Email:</strong> ${data.referringEmail}</p>
         

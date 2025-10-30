@@ -67,6 +67,7 @@ const ReferralForm = () => {
           patientEmail: data.patientEmail,
           dateOfInjury: new Date().toLocaleDateString(),
           injuryType: data.injuryType,
+          specialty: data.specialty,
           referringName: data.referringParty,
           referringCompany: data.referringParty,
           referringPhone: data.referringPhone,
