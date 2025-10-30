@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
 import ReferralForm from "@/components/ReferralForm";
+import TestimonialsBanner from "@/components/TestimonialsBanner";
 import { Clock, Users, Shield, Award, ArrowRight } from "lucide-react";
 import availabilityImg from "@/assets/24-7-availability.jpg";
 import networkImg from "@/assets/elite-network.jpg";
@@ -63,6 +64,9 @@ const Home = () => {
               <br />
               When You Need It Most
             </h1>
+            <p className="text-xl md:text-2xl font-semibold text-foreground mb-2">
+              Accidents Happen, We're Here to Help!
+            </p>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
               An elite network of medical providers all accepting liens. Get the care you need now.
             </p>
@@ -112,6 +116,9 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Testimonials Banner */}
+      <TestimonialsBanner />
+
       {/* Referral Form Section */}
       <section id="referral-form" className="py-12 px-4">
         <div className="container mx-auto max-w-3xl">
@@ -121,8 +128,11 @@ const Home = () => {
                 Make a Referral
               </span>
             </h2>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-muted-foreground mb-2">
               Connect your injured client with our elite network of medical providers
+            </p>
+            <p className="text-base font-semibold text-foreground">
+              Free for attorneys - No cost to send referrals
             </p>
           </div>
           <ReferralForm />
