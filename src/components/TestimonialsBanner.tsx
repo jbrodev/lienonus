@@ -1,27 +1,22 @@
 import { useEffect, useRef } from "react";
-import avalosImg from "@/assets/avalos.png";
 
 interface Testimonial {
   quote: string;
   author: string;
-  image?: string;
 }
 
 const testimonials: Testimonial[] = [
   {
     quote: "Amazing platform! The variety of doctors available is extensive, covering numerous specialties, which makes it easy to find the right professional for our client needs.",
-    author: "Yulissa Avalos",
-    image: avalosImg
+    author: "Yulissa Avalos"
   },
   {
     quote: "Amazing platform! The variety of doctors available is extensive, covering numerous specialties, which makes it easy to find the right professional for our client needs.",
-    author: "Yulissa Avalos",
-    image: avalosImg
+    author: "Yulissa Avalos"
   },
   {
     quote: "Amazing platform! The variety of doctors available is extensive, covering numerous specialties, which makes it easy to find the right professional for our client needs.",
-    author: "Yulissa Avalos",
-    image: avalosImg
+    author: "Yulissa Avalos"
   },
 ];
 
@@ -63,21 +58,12 @@ const TestimonialsBanner = () => {
             key={index}
             className="inline-flex flex-col items-start px-8 min-w-[500px] opacity-70"
           >
-            <p className="text-base italic text-foreground mb-3 whitespace-normal">
+            <p className="text-base italic text-foreground mb-2 whitespace-normal">
               "{testimonial.quote}"
             </p>
-            <div className="flex items-center gap-3">
-              {testimonial.image && (
-                <img 
-                  src={testimonial.image} 
-                  alt={testimonial.author}
-                  className="w-10 h-10 rounded-full object-cover"
-                />
-              )}
-              <p className="text-sm font-semibold text-muted-foreground">
-                — {testimonial.author}
-              </p>
-            </div>
+            <p className="text-sm font-semibold text-muted-foreground">
+              — {testimonial.author}
+            </p>
           </div>
         ))}
       </div>
