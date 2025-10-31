@@ -152,23 +152,17 @@ const Navigation = () => {
                 />
               </form>
               <Button onClick={scrollToReferral}>Make a Referral</Button>
-              {user ? (
+              {isAdmin && (
                 <>
-                  {isAdmin && (
-                    <Button variant="outline" onClick={() => navigate("/admin")} size="sm">
-                      <Shield className="h-4 w-4 mr-2" />
-                      Admin
-                    </Button>
-                  )}
+                  <Button variant="outline" onClick={() => navigate("/admin")} size="sm">
+                    <Shield className="h-4 w-4 mr-2" />
+                    Admin
+                  </Button>
                   <Button variant="ghost" onClick={handleLogout} size="sm">
                     <LogOut className="h-4 w-4 mr-2" />
                     Logout
                   </Button>
                 </>
-              ) : (
-                <Button variant="outline" onClick={() => navigate("/auth")} size="sm">
-                  Login
-                </Button>
               )}
               <ThemeToggle />
             </div>
@@ -251,37 +245,24 @@ const Navigation = () => {
             <Button onClick={scrollToReferral} className="w-full">
               Make a Referral
             </Button>
-            {user ? (
+            {isAdmin && (
               <>
-                {isAdmin && (
-                  <Button 
-                    variant="outline" 
-                    onClick={() => {
-                      navigate("/admin");
-                      setIsMenuOpen(false);
-                    }} 
-                    className="w-full"
-                  >
-                    <Shield className="h-4 w-4 mr-2" />
-                    Admin Dashboard
-                  </Button>
-                )}
+                <Button 
+                  variant="outline" 
+                  onClick={() => {
+                    navigate("/admin");
+                    setIsMenuOpen(false);
+                  }} 
+                  className="w-full"
+                >
+                  <Shield className="h-4 w-4 mr-2" />
+                  Admin Dashboard
+                </Button>
                 <Button variant="ghost" onClick={handleLogout} className="w-full">
                   <LogOut className="h-4 w-4 mr-2" />
                   Logout
                 </Button>
               </>
-            ) : (
-              <Button 
-                variant="outline" 
-                onClick={() => {
-                  navigate("/auth");
-                  setIsMenuOpen(false);
-                }} 
-                className="w-full"
-              >
-                Login
-              </Button>
             )}
           </div>
         )}
