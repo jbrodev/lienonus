@@ -226,14 +226,24 @@ const ReferralForm = () => {
                           <SelectValue placeholder="Select a specialty" />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
+                      <SelectContent className="bg-background z-50">
                         <SelectItem value="acupuncture">Acupuncture</SelectItem>
+                        <SelectItem value="aquatic-therapy">Aquatic Therapy</SelectItem>
                         <SelectItem value="chiropractic">Chiropractic</SelectItem>
-                        <SelectItem value="neurology">Neurology</SelectItem>
-                        <SelectItem value="orthopedic">Orthopedic Surgery</SelectItem>
+                        <SelectItem value="dentist">Dentist</SelectItem>
+                        <SelectItem value="ent">ENT</SelectItem>
+                        <SelectItem value="internal-medicine">Internal Medicine</SelectItem>
+                        <SelectItem value="massage-therapy">Massage Therapy</SelectItem>
+                        <SelectItem value="mri">MRI</SelectItem>
+                        <SelectItem value="neurologist">Neurologist</SelectItem>
+                        <SelectItem value="neurosurgeon">Neurosurgeon</SelectItem>
+                        <SelectItem value="ophthalmologist">Ophthalmologist</SelectItem>
+                        <SelectItem value="orthopedics">Orthopedics</SelectItem>
                         <SelectItem value="pain-management">Pain Management</SelectItem>
+                        <SelectItem value="pharmacy">Pharmacy</SelectItem>
                         <SelectItem value="physical-therapy">Physical Therapy</SelectItem>
-                        <SelectItem value="other">Other</SelectItem>
+                        <SelectItem value="podiatrist">Podiatrist</SelectItem>
+                        <SelectItem value="psychologist">Psychologist</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />

@@ -5,6 +5,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Search, MapPin, Phone, Mail, ExternalLink } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -116,11 +123,22 @@ const providers = [
 const specialties = [
   "All Specialties",
   "Acupuncture",
+  "Aquatic Therapy",
   "Chiropractic",
-  "Neurology",
-  "Orthopedic Surgery",
+  "Dentist",
+  "ENT",
+  "Internal Medicine",
+  "Massage Therapy",
+  "MRI",
+  "Neurologist",
+  "Neurosurgeon",
+  "Ophthalmologist",
+  "Orthopedics",
   "Pain Management",
+  "Pharmacy",
   "Physical Therapy",
+  "Podiatrist",
+  "Psychologist",
 ];
 
 const Providers = () => {
@@ -208,17 +226,19 @@ const Providers = () => {
             </div>
 
             {/* Specialty Filter */}
-            <div className="flex flex-wrap gap-2 justify-center">
-              {specialties.map((specialty) => (
-                <Button
-                  key={specialty}
-                  variant={selectedSpecialty === specialty ? "default" : "outline"}
-                  onClick={() => setSelectedSpecialty(specialty)}
-                  size="sm"
-                >
-                  {specialty}
-                </Button>
-              ))}
+            <div className="max-w-xs mx-auto">
+              <Select value={selectedSpecialty} onValueChange={setSelectedSpecialty}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Filter by specialty" />
+                </SelectTrigger>
+                <SelectContent className="bg-background z-50">
+                  {specialties.map((specialty) => (
+                    <SelectItem key={specialty} value={specialty}>
+                      {specialty}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
           </div>
 
