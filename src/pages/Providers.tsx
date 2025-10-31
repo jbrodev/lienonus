@@ -716,13 +716,14 @@ const Providers = () => {
   const [selectedSpecialty, setSelectedSpecialty] = useState("All Specialties");
   const [searchTerm, setSearchTerm] = useState("");
 
-  const trackProviderClick = async (providerId: number, providerName: string, eventType: string) => {
+  const trackProviderClick = async (providerId: number, providerName: string, specialty: string, eventType: string) => {
     try {
       const { error } = await (supabase as any)
         .from('provider_analytics')
         .insert({
           provider_id: providerId,
           provider_name: providerName,
+          specialty: specialty,
           event_type: eventType,
         });
 
@@ -735,16 +736,16 @@ const Providers = () => {
   };
 
   const handleVisitWebsite = (provider: typeof providers[0]) => {
-    trackProviderClick(provider.id, provider.name, 'website_click');
+    trackProviderClick(provider.id, provider.name, provider.specialty, 'website_click');
     window.open(provider.website, '_blank');
   };
 
   const handleEmailClick = (provider: typeof providers[0]) => {
-    trackProviderClick(provider.id, provider.name, 'email_click');
+    trackProviderClick(provider.id, provider.name, provider.specialty, 'email_click');
   };
 
   const handlePhoneClick = (provider: typeof providers[0]) => {
-    trackProviderClick(provider.id, provider.name, 'phone_click');
+    trackProviderClick(provider.id, provider.name, provider.specialty, 'phone_click');
   };
 
   // Apply search from URL parameters

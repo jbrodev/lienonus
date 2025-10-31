@@ -165,6 +165,37 @@ const AdminDashboard = () => {
     }
   };
 
+  const handleExport = () => {
+    // Prepare CSV data
+    const headers = ["Provider ID", "Provider Name", "Specialty", "Event Type", "Date & Time"];
+    const csvData = filteredAnalytics.map((item) => [
+      item.provider_id,
+      item.provider_name,
+      item.specialty,
+      formatEventType(item.event_type),
+      new Date(item.created_at).toLocaleString(),
+    ]);
+
+    // Create CSV content
+    const csvContent = [
+      headers.join(","),
+      ...csvData.map((row) => row.map((cell) => `"${cell}"`).join(",")),
+    ].join("\n");
+
+    // Create blob and download
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const link = document.createElement("a");
+    const url = URL.createObjectURL(blob);
+    link.setAttribute("href", url);
+    link.setAttribute("download", `provider_analytics_${new Date().toISOString().split("T")[0]}.csv`);
+    link.style.visibility = "hidden";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    toast.success("Data exported successfully");
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -189,13 +220,14 @@ const AdminDashboard = () => {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex flex-col md:flex-row gap-4">
-              <Input
-                placeholder="Search by provider name or ID..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="md:w-64"
-              />
+            <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
+              <div className="flex flex-col md:flex-row gap-4 flex-1">
+                <Input
+                  placeholder="Search by provider name or ID..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="md:w-64"
+                />
               <Select value={eventTypeFilter} onValueChange={setEventTypeFilter}>
                 <SelectTrigger className="md:w-48">
                   <SelectValue placeholder="Filter by event type" />
@@ -222,6 +254,10 @@ const AdminDashboard = () => {
                   ))}
                 </SelectContent>
               </Select>
+              </div>
+              <Button onClick={handleExport} variant="outline">
+                Export to Excel
+              </Button>
             </div>
 
             {filteredAnalytics.length === 0 ? (
