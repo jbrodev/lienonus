@@ -1,8 +1,11 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Menu, X, Search, Phone, Mail, Facebook, Instagram } from "lucide-react";
-import { useState } from "react";
+import { Menu, X, Search, Phone, Mail, Facebook, Instagram, LogOut, Shield } from "lucide-react";
+import { useState, useEffect } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { User } from "@supabase/supabase-js";
+import { toast } from "sonner";
 import ThemeToggle from "./ThemeToggle";
 import logo from "@/assets/logo.png";
 
@@ -11,6 +14,46 @@ const Navigation = () => {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [user, setUser] = useState<User | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+      if (session?.user) {
+        checkAdminStatus(session.user.id);
+      }
+    });
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      setUser(session?.user ?? null);
+      if (session?.user) {
+        checkAdminStatus(session.user.id);
+      } else {
+        setIsAdmin(false);
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const checkAdminStatus = async (userId: string) => {
+    const { data } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", userId)
+      .eq("role", "admin")
+      .maybeSingle();
+    
+    setIsAdmin(!!data);
+  };
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    toast.success("Logged out successfully");
+    navigate("/");
+    setIsMenuOpen(false);
+  };
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -109,6 +152,24 @@ const Navigation = () => {
                 />
               </form>
               <Button onClick={scrollToReferral}>Make a Referral</Button>
+              {user ? (
+                <>
+                  {isAdmin && (
+                    <Button variant="outline" onClick={() => navigate("/admin")} size="sm">
+                      <Shield className="h-4 w-4 mr-2" />
+                      Admin
+                    </Button>
+                  )}
+                  <Button variant="ghost" onClick={handleLogout} size="sm">
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Logout
+                  </Button>
+                </>
+              ) : (
+                <Button variant="outline" onClick={() => navigate("/auth")} size="sm">
+                  Login
+                </Button>
+              )}
               <ThemeToggle />
             </div>
           </div>
@@ -190,6 +251,38 @@ const Navigation = () => {
             <Button onClick={scrollToReferral} className="w-full">
               Make a Referral
             </Button>
+            {user ? (
+              <>
+                {isAdmin && (
+                  <Button 
+                    variant="outline" 
+                    onClick={() => {
+                      navigate("/admin");
+                      setIsMenuOpen(false);
+                    }} 
+                    className="w-full"
+                  >
+                    <Shield className="h-4 w-4 mr-2" />
+                    Admin Dashboard
+                  </Button>
+                )}
+                <Button variant="ghost" onClick={handleLogout} className="w-full">
+                  <LogOut className="h-4 w-4 mr-2" />
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <Button 
+                variant="outline" 
+                onClick={() => {
+                  navigate("/auth");
+                  setIsMenuOpen(false);
+                }} 
+                className="w-full"
+              >
+                Login
+              </Button>
+            )}
           </div>
         )}
       </div>
