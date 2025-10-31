@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Navigation from "@/components/Navigation";
@@ -13,6 +14,19 @@ import logo from "@/assets/logo.png";
 import doctorHero from "@/assets/doctor-hero.jpg";
 
 const Home = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.scrollToForm) {
+      setTimeout(() => {
+        const referralSection = document.getElementById('referral-form');
+        if (referralSection) {
+          referralSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  }, [location]);
+
   const features = [
     {
       icon: Clock,

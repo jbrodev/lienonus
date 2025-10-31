@@ -27,10 +27,14 @@ const Navigation = () => {
   ];
 
   const scrollToReferral = () => {
-    const referralSection = document.getElementById('referral-form');
-    if (referralSection) {
-      referralSection.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
+    setIsMenuOpen(false);
+    if (location.pathname !== '/') {
+      navigate('/', { state: { scrollToForm: true } });
+    } else {
+      const referralSection = document.getElementById('referral-form');
+      if (referralSection) {
+        referralSection.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
