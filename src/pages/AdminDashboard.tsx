@@ -4,14 +4,18 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
-import { Loader2, Trash2 } from "lucide-react";
+import { Loader2, Trash2, ArrowUpDown } from "lucide-react";
 import Navigation from "@/components/Navigation";
 
 interface AnalyticsData {
   id: string;
   provider_name: string;
+  provider_id: number;
   event_type: string;
+  specialty: string;
   created_at: string;
 }
 
@@ -19,6 +23,12 @@ const AdminDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
   const [analytics, setAnalytics] = useState<AnalyticsData[]>([]);
+  const [filteredAnalytics, setFilteredAnalytics] = useState<AnalyticsData[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [eventTypeFilter, setEventTypeFilter] = useState("all");
+  const [specialtyFilter, setSpecialtyFilter] = useState("all");
+  const [sortField, setSortField] = useState<keyof AnalyticsData>("created_at");
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -63,12 +73,81 @@ const AdminDashboard = () => {
 
       if (error) throw error;
       setAnalytics(data || []);
+      setFilteredAnalytics(data || []);
     } catch (error: any) {
       toast.error("Failed to load analytics data");
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    let filtered = [...analytics];
+
+    // Apply search filter
+    if (searchTerm) {
+      filtered = filtered.filter(
+        (item) =>
+          item.provider_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          item.provider_id.toString().includes(searchTerm)
+      );
+    }
+
+    // Apply event type filter
+    if (eventTypeFilter !== "all") {
+      filtered = filtered.filter((item) => item.event_type === eventTypeFilter);
+    }
+
+    // Apply specialty filter
+    if (specialtyFilter !== "all") {
+      filtered = filtered.filter((item) => item.specialty === specialtyFilter);
+    }
+
+    // Apply sorting
+    filtered.sort((a, b) => {
+      const aValue = a[sortField];
+      const bValue = b[sortField];
+      
+      if (sortField === "created_at") {
+        const aTime = new Date(aValue as string).getTime();
+        const bTime = new Date(bValue as string).getTime();
+        return sortDirection === "asc" ? aTime - bTime : bTime - aTime;
+      }
+      
+      if (typeof aValue === "string" && typeof bValue === "string") {
+        return sortDirection === "asc"
+          ? aValue.localeCompare(bValue)
+          : bValue.localeCompare(aValue);
+      }
+      
+      if (typeof aValue === "number" && typeof bValue === "number") {
+        return sortDirection === "asc" ? aValue - bValue : bValue - aValue;
+      }
+      
+      return 0;
+    });
+
+    setFilteredAnalytics(filtered);
+  }, [analytics, searchTerm, eventTypeFilter, specialtyFilter, sortField, sortDirection]);
+
+  const formatEventType = (eventType: string) => {
+    return eventType
+      .split("_")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
+
+  const handleSort = (field: keyof AnalyticsData) => {
+    if (sortField === field) {
+      setSortDirection(sortDirection === "asc" ? "desc" : "asc");
+    } else {
+      setSortField(field);
+      setSortDirection("asc");
+    }
+  };
+
+  const uniqueEventTypes = Array.from(new Set(analytics.map((item) => item.event_type)));
+  const uniqueSpecialties = Array.from(new Set(analytics.map((item) => item.specialty)));
 
   const handleDelete = async (id: string) => {
     try {
@@ -101,7 +180,7 @@ const AdminDashboard = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
-      <div className="container mx-auto py-8 px-4">
+      <div className="container mx-auto py-8 px-4 pt-24">
         <Card>
           <CardHeader>
             <CardTitle>Provider Analytics Dashboard</CardTitle>
@@ -109,27 +188,118 @@ const AdminDashboard = () => {
               View and manage all provider interaction analytics
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            {analytics.length === 0 ? (
+          <CardContent className="space-y-4">
+            <div className="flex flex-col md:flex-row gap-4">
+              <Input
+                placeholder="Search by provider name or ID..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="md:w-64"
+              />
+              <Select value={eventTypeFilter} onValueChange={setEventTypeFilter}>
+                <SelectTrigger className="md:w-48">
+                  <SelectValue placeholder="Filter by event type" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Events</SelectItem>
+                  {uniqueEventTypes.map((type) => (
+                    <SelectItem key={type} value={type}>
+                      {formatEventType(type)}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Select value={specialtyFilter} onValueChange={setSpecialtyFilter}>
+                <SelectTrigger className="md:w-48">
+                  <SelectValue placeholder="Filter by specialty" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Specialties</SelectItem>
+                  {uniqueSpecialties.map((specialty) => (
+                    <SelectItem key={specialty} value={specialty}>
+                      {specialty}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {filteredAnalytics.length === 0 ? (
               <p className="text-center text-muted-foreground py-8">
-                No analytics data available yet.
+                {analytics.length === 0
+                  ? "No analytics data available yet."
+                  : "No results found matching your filters."}
               </p>
             ) : (
               <div className="overflow-x-auto">
                 <Table>
                   <TableHeader>
                     <TableRow>
-                      <TableHead>Provider Name</TableHead>
-                      <TableHead>Event Type</TableHead>
-                      <TableHead>Date & Time</TableHead>
+                      <TableHead>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleSort("provider_id")}
+                          className="h-auto p-0 hover:bg-transparent"
+                        >
+                          Provider ID
+                          <ArrowUpDown className="ml-2 h-4 w-4" />
+                        </Button>
+                      </TableHead>
+                      <TableHead>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleSort("provider_name")}
+                          className="h-auto p-0 hover:bg-transparent"
+                        >
+                          Provider Name
+                          <ArrowUpDown className="ml-2 h-4 w-4" />
+                        </Button>
+                      </TableHead>
+                      <TableHead>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleSort("specialty")}
+                          className="h-auto p-0 hover:bg-transparent"
+                        >
+                          Specialty
+                          <ArrowUpDown className="ml-2 h-4 w-4" />
+                        </Button>
+                      </TableHead>
+                      <TableHead>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleSort("event_type")}
+                          className="h-auto p-0 hover:bg-transparent"
+                        >
+                          Event Type
+                          <ArrowUpDown className="ml-2 h-4 w-4" />
+                        </Button>
+                      </TableHead>
+                      <TableHead>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => handleSort("created_at")}
+                          className="h-auto p-0 hover:bg-transparent"
+                        >
+                          Date & Time
+                          <ArrowUpDown className="ml-2 h-4 w-4" />
+                        </Button>
+                      </TableHead>
                       <TableHead className="text-right">Actions</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {analytics.map((item) => (
+                    {filteredAnalytics.map((item) => (
                       <TableRow key={item.id}>
-                        <TableCell className="font-medium">{item.provider_name}</TableCell>
-                        <TableCell>{item.event_type}</TableCell>
+                        <TableCell className="font-medium">{item.provider_id}</TableCell>
+                        <TableCell>{item.provider_name}</TableCell>
+                        <TableCell>{item.specialty}</TableCell>
+                        <TableCell>{formatEventType(item.event_type)}</TableCell>
                         <TableCell>
                           {new Date(item.created_at).toLocaleString()}
                         </TableCell>
