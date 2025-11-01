@@ -13,7 +13,33 @@ const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [passwordError, setPasswordError] = useState("");
   const navigate = useNavigate();
+
+  const validatePassword = (pass: string): boolean => {
+    if (pass.length < 12) {
+      setPasswordError("Password must be at least 12 characters long");
+      return false;
+    }
+    if (!/[A-Z]/.test(pass)) {
+      setPasswordError("Password must contain at least one uppercase letter");
+      return false;
+    }
+    if (!/[a-z]/.test(pass)) {
+      setPasswordError("Password must contain at least one lowercase letter");
+      return false;
+    }
+    if (!/[0-9]/.test(pass)) {
+      setPasswordError("Password must contain at least one number");
+      return false;
+    }
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(pass)) {
+      setPasswordError("Password must contain at least one special character");
+      return false;
+    }
+    setPasswordError("");
+    return true;
+  };
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -25,6 +51,11 @@ const Auth = () => {
 
   const handleAuth = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!isLogin && !validatePassword(password)) {
+      return;
+    }
+    
     setLoading(true);
 
     try {
@@ -86,10 +117,23 @@ const Auth = () => {
                 type="password"
                 placeholder="••••••••"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  if (!isLogin) {
+                    validatePassword(e.target.value);
+                  }
+                }}
                 required
-                minLength={6}
+                minLength={12}
               />
+              {!isLogin && passwordError && (
+                <p className="text-sm text-destructive">{passwordError}</p>
+              )}
+              {!isLogin && !passwordError && password && (
+                <p className="text-sm text-muted-foreground">
+                  Strong password ✓
+                </p>
+              )}
             </div>
             <Button type="submit" className="w-full" disabled={loading}>
               {loading ? (
