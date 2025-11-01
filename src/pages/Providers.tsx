@@ -718,14 +718,14 @@ const Providers = () => {
 
   const trackProviderClick = async (providerId: number, providerName: string, specialty: string, eventType: string) => {
     try {
-      const { error } = await (supabase as any)
-        .from('provider_analytics')
-        .insert({
+      const { error } = await supabase.functions.invoke('track-provider-analytics', {
+        body: {
           provider_id: providerId,
           provider_name: providerName,
           specialty: specialty,
           event_type: eventType,
-        });
+        },
+      });
 
       if (error) {
         console.error('Error tracking click:', error);

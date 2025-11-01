@@ -2,3 +2,6 @@ project_id = "nbxksmbuuetrmusfxsia"
 
 [functions.send-referral-email]
 verify_jwt = false
+
+[functions.track-provider-analytics]
+verify_jwt = false
