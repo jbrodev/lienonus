@@ -14,23 +14,12 @@ const Auth = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [passwordError, setPasswordError] = useState("");
+  const [passwordStrength, setPasswordStrength] = useState<"weak" | "neutral" | "strong">("weak");
   const navigate = useNavigate();
 
   const validatePassword = (pass: string): boolean => {
-    if (pass.length < 12) {
-      setPasswordError("Password must be at least 12 characters long");
-      return false;
-    }
-    if (!/[A-Z]/.test(pass)) {
-      setPasswordError("Password must contain at least one uppercase letter");
-      return false;
-    }
-    if (!/[a-z]/.test(pass)) {
-      setPasswordError("Password must contain at least one lowercase letter");
-      return false;
-    }
-    if (!/[0-9]/.test(pass)) {
-      setPasswordError("Password must contain at least one number");
+    if (pass.length < 8) {
+      setPasswordError("Password must be at least 8 characters long");
       return false;
     }
     if (!/[!@#$%^&*(),.?":{}|<>]/.test(pass)) {
@@ -39,6 +28,22 @@ const Auth = () => {
     }
     setPasswordError("");
     return true;
+  };
+
+  const calculatePasswordStrength = (pass: string): "weak" | "neutral" | "strong" => {
+    if (pass.length === 0) return "weak";
+    
+    let strength = 0;
+    if (pass.length >= 8) strength++;
+    if (pass.length >= 12) strength++;
+    if (/[a-z]/.test(pass)) strength++;
+    if (/[A-Z]/.test(pass)) strength++;
+    if (/[0-9]/.test(pass)) strength++;
+    if (/[!@#$%^&*(),.?":{}|<>]/.test(pass)) strength++;
+    
+    if (strength <= 2) return "weak";
+    if (strength <= 4) return "neutral";
+    return "strong";
   };
 
   useEffect(() => {
@@ -121,18 +126,36 @@ const Auth = () => {
                   setPassword(e.target.value);
                   if (!isLogin) {
                     validatePassword(e.target.value);
+                    setPasswordStrength(calculatePasswordStrength(e.target.value));
                   }
                 }}
                 required
-                minLength={12}
+                minLength={8}
               />
               {!isLogin && passwordError && (
                 <p className="text-sm text-destructive">{passwordError}</p>
               )}
-              {!isLogin && !passwordError && password && (
-                <p className="text-sm text-muted-foreground">
-                  Strong password ✓
-                </p>
+              {!isLogin && password && !passwordError && (
+                <div className="space-y-2">
+                  <div className="flex gap-1 h-1">
+                    <div className={`flex-1 rounded-full transition-colors ${
+                      passwordStrength === "weak" ? "bg-destructive" : 
+                      passwordStrength === "neutral" ? "bg-yellow-500" : 
+                      "bg-green-500"
+                    }`} />
+                    <div className={`flex-1 rounded-full transition-colors ${
+                      passwordStrength === "neutral" || passwordStrength === "strong" ? 
+                      passwordStrength === "neutral" ? "bg-yellow-500" : "bg-green-500" : 
+                      "bg-muted"
+                    }`} />
+                    <div className={`flex-1 rounded-full transition-colors ${
+                      passwordStrength === "strong" ? "bg-green-500" : "bg-muted"
+                    }`} />
+                  </div>
+                  <p className="text-xs text-muted-foreground capitalize">
+                    {passwordStrength}
+                  </p>
+                </div>
               )}
             </div>
             <Button type="submit" className="w-full" disabled={loading}>
