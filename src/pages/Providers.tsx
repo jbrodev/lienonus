@@ -471,21 +471,10 @@ const Providers = () => {
   const filteredProviders = providers.filter((provider) => {
     const matchesSpecialty =
       selectedSpecialty === "All Specialties" || provider.specialty === selectedSpecialty;
-    
-    // Extract potential zip code from search term (5 digits)
-    const zipCodeMatch = searchTerm.match(/\b\d{5}\b/);
-    const searchZipCode = zipCodeMatch ? zipCodeMatch[0] : null;
-    
-    // Extract zip code from provider location
-    const locationZipMatch = provider.location.match(/\b\d{5}\b/);
-    const providerZipCode = locationZipMatch ? locationZipMatch[0] : null;
-    
     const matchesSearch =
       provider.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       provider.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      provider.specialty.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (searchZipCode && providerZipCode && providerZipCode === searchZipCode);
-    
+      provider.specialty.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesSpecialty && matchesSearch;
   });
 
