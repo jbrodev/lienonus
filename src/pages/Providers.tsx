@@ -50,6 +50,7 @@ const providers = [
 
   // AQUATIC THERAPY
   { id: 30, name: "West Star Physical Therapy Network", specialty: "Aquatic Therapy", location: "275 W San Bernardino Rd, Covina, CA 91723", phone: "(888) 786-2888", email: "ptreferral@apmi.net", website: "https://wsptn.com", acceptsLiens: true },
+  { id: 31, name: "West Star Physical Therapy Network", specialty: "Aquatic Therapy", location: "6801 Long Beach Blvd, Long Beach, CA 90805", phone: "(888) 786-2888", email: "ptreferral@apmi.net", website: "https://wsptn.com", acceptsLiens: true },
 
   // CHIROPRACTIC
   { id: 31, name: "Lim Rehabilitation & Chiropractic, Inc.", specialty: "Chiropractic", location: "4248 Maine Ave, Baldwin Park, CA 91706", phone: "(626) 851-8083", email: "limrehabbaldwinpark@gmail.com", website: "", acceptsLiens: true },
