@@ -132,10 +132,7 @@ const Auth = () => {
                 required
                 minLength={8}
               />
-              {!isLogin && passwordError && (
-                <p className="text-sm text-destructive">{passwordError}</p>
-              )}
-              {!isLogin && password && !passwordError && (
+              {!isLogin && password && (
                 <div className="space-y-2">
                   <div className="flex gap-1 h-1">
                     <div className={`flex-1 rounded-full transition-colors ${
@@ -156,6 +153,9 @@ const Auth = () => {
                     {passwordStrength}
                   </p>
                 </div>
+              )}
+              {!isLogin && passwordError && (
+                <p className="text-sm text-destructive">{passwordError}</p>
               )}
             </div>
             <Button type="submit" className="w-full" disabled={loading}>
