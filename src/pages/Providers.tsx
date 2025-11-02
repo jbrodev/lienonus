@@ -469,13 +469,35 @@ const Providers = () => {
   }, [searchParams]);
 
   const filteredProviders = providers.filter((provider) => {
-    const matchesSpecialty =
+    const specialtyMatch =
       selectedSpecialty === "All Specialties" || provider.specialty === selectedSpecialty;
-    const matchesSearch =
-      provider.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      provider.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      provider.specialty.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesSpecialty && matchesSearch;
+
+    const q = searchTerm.trim().toLowerCase();
+
+    // Extract 3-5 digit zip partials from the search term
+    const zipPartials = Array.from(q.matchAll(/\b(\d{3,5})\b/g), (m) => m[1]);
+
+    // Extract provider ZIP codes (5 digits)
+    const providerZips = Array.from(provider.location.matchAll(/\b(\d{5})\b/g), (m) => m[1]);
+
+    const matchesZip =
+      zipPartials.length === 0 ||
+      providerZips.some((zip) => zipPartials.some((partial) => zip.includes(partial)));
+
+    // Text tokens (exclude numeric zip tokens)
+    const textOnly = q.replace(/\b\d{3,5}\b/g, " ").replace(/\s+/g, " ").trim();
+    const tokens = textOnly ? textOnly.split(" ") : [];
+
+    const haystacks = [
+      provider.name.toLowerCase(),
+      provider.location.toLowerCase(),
+      provider.specialty.toLowerCase(),
+    ];
+
+    const matchesText =
+      tokens.length === 0 || tokens.every((token) => haystacks.some((h) => h.includes(token)));
+
+    return specialtyMatch && matchesText && matchesZip;
   });
 
   return (
@@ -524,10 +546,10 @@ const Providers = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProviders.map((provider) => (
-              <Card
-                key={provider.id}
-                className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-border hover:border-primary/50"
-              >
+                <Card
+                  key={`${provider.id}-${provider.name}-${provider.location}`}
+                  className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-border hover:border-primary/50"
+                >
                 <CardHeader>
                   <div className="flex items-start justify-between">
                     <div>
