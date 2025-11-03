@@ -566,22 +566,22 @@ const Providers = () => {
                     {provider.location}
                   </div>
                   {provider.phone && (
-                    <button
-                      onClick={() => handlePhoneClick(provider)}
-                      className="flex items-center text-sm text-muted-foreground hover:text-primary transition-colors w-full"
+                    <a
+                      href={`tel:${provider.phone}`}
+                      className="flex items-center text-sm text-muted-foreground hover:text-primary transition-colors"
                     >
                       <Phone size={16} className="mr-2 text-primary" />
                       {provider.phone}
-                    </button>
+                    </a>
                   )}
                   {provider.email && (
-                    <button
-                      onClick={() => handleEmailClick(provider)}
-                      className="flex items-center text-sm text-muted-foreground hover:text-primary transition-colors w-full"
+                    <a
+                      href={`mailto:${provider.email}`}
+                      className="flex items-center text-sm text-muted-foreground hover:text-primary transition-colors"
                     >
                       <Mail size={16} className="mr-2 text-primary" />
                       {provider.email}
-                    </button>
+                    </a>
                   )}
                   <div className="pt-2 space-y-2">
                     <Badge variant="outline" className="text-secondary border-secondary">
