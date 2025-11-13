@@ -430,6 +430,17 @@ const Providers = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const trackProviderClick = async (providerId: number, providerName: string, specialty: string, eventType: string) => {
+    const storageKey = `provider_${providerId}_${eventType}`;
+    
+    // Check if this provider contact was already clicked this session
+    if (sessionStorage.getItem(storageKey)) {
+      toast("Contact info copied!");
+      return;
+    }
+
+    // Mark as clicked in sessionStorage
+    sessionStorage.setItem(storageKey, 'true');
+
     try {
       const { error } = await supabase.functions.invoke('track-provider-analytics', {
         body: {
@@ -453,12 +464,16 @@ const Providers = () => {
     window.open(provider.website, '_blank');
   };
 
-  const handleEmailClick = (provider: typeof providers[0]) => {
+  const handleEmailClick = (provider: typeof providers[0], e: React.MouseEvent) => {
+    e.preventDefault();
     trackProviderClick(provider.id, provider.name, provider.specialty, 'email_click');
+    window.location.href = `mailto:${provider.email}`;
   };
 
-  const handlePhoneClick = (provider: typeof providers[0]) => {
+  const handlePhoneClick = (provider: typeof providers[0], e: React.MouseEvent) => {
+    e.preventDefault();
     trackProviderClick(provider.id, provider.name, provider.specialty, 'phone_click');
+    window.location.href = `tel:${provider.phone}`;
   };
 
   useEffect(() => {
@@ -568,6 +583,7 @@ const Providers = () => {
                   {provider.phone && (
                     <a
                       href={`tel:${provider.phone}`}
+                      onClick={(e) => handlePhoneClick(provider, e)}
                       className="flex items-center text-sm text-muted-foreground hover:text-primary transition-colors"
                     >
                       <Phone size={16} className="mr-2 text-primary" />
@@ -577,6 +593,7 @@ const Providers = () => {
                   {provider.email && (
                     <a
                       href={`mailto:${provider.email}`}
+                      onClick={(e) => handleEmailClick(provider, e)}
                       className="flex items-center text-sm text-muted-foreground hover:text-primary transition-colors"
                     >
                       <Mail size={16} className="mr-2 text-primary" />
