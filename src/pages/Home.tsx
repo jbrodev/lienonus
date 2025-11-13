@@ -131,7 +131,7 @@ const Home = () => {
       {/* Footer */}
       <footer className="bg-card border-t border-border py-6 px-4">
         <div className="container mx-auto text-center space-y-2">
-          <p className="text-muted-foreground">&copy; 2024 Lien On Us. All rights reserved.</p>
+          <p className="text-muted-foreground">© 2025 Lien On Us. All rights reserved.</p>
           <p className="text-sm text-muted-foreground">Proudly serving all of California • 24/7 Medical Provider Network</p>
         </div>
       </footer>
