@@ -49,8 +49,8 @@ const providers = [
   { id: 29, name: "Lim Rehabilitation & Chiropractic, Inc.", specialty: "Acupuncture", location: "7648 Painter Ave, Suite C, Whittier, CA 90602", phone: "(562) 464-4400", email: "limrehabwhittier@gmail.com", website: "", acceptsLiens: true, latitude: 33.974388, longitude: -118.032911 },
 
   // AQUATIC THERAPY
-  { id: 30, name: "West Star Physical Therapy Network", specialty: "Aquatic Therapy", location: "275 W San Bernardino Rd, Covina, CA 91723", phone: "(888) 786-2888", email: "ptreferral@apmi.net", website: "https://wsptn.com", acceptsLiens: true },
-  { id: 31, name: "West Star Physical Therapy Network", specialty: "Aquatic Therapy", location: "6801 Long Beach Blvd, Long Beach, CA 90805", phone: "(888) 786-2888", email: "ptreferral@apmi.net", website: "https://wsptn.com", acceptsLiens: true },
+  { id: 30, name: "West Star Physical Therapy Network", specialty: "Aquatic Therapy", location: "275 W San Bernardino Rd., Covina, CA 91723", phone: "(888) 786-2888", email: "ptreferral@apmi.net", website: "https://wsptn.com", acceptsLiens: true, latitude: 34.089847, longitude: -117.893684 },
+  { id: 31, name: "West Star Physical Therapy Network", specialty: "Aquatic Therapy", location: "6801 Long Beach Blvd., Long Beach, CA 90805", phone: "(888) 786-2888", email: "ptreferral@apmi.net", website: "https://wsptn.com", acceptsLiens: true, latitude: 33.878511, longitude: -118.191566 },
 
   // CHIROPRACTIC
   { id: 32, name: "Lim Rehabilitation & Chiropractic, Inc.", specialty: "Chiropractic", location: "4248 Maine Ave, Baldwin Park, CA 91706", phone: "(626) 851-8083", email: "limrehabbaldwinpark@gmail.com", website: "", acceptsLiens: true },
