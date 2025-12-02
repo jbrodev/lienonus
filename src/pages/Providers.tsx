@@ -481,6 +481,30 @@ const Providers = () => {
     }
   }, [searchParams]);
 
+  // Helper function to extract zip code from location string
+  const extractZip = (location: string): string => {
+    const match = location.match(/\b\d{5}\b/);
+    return match ? match[0] : '';
+  };
+
+  // Helper function to extract city from location string
+  const extractCity = (location: string): string => {
+    const parts = location.split(',');
+    if (parts.length >= 2) {
+      return parts[parts.length - 2].trim();
+    }
+    return '';
+  };
+
+  // Helper function to calculate zip code distance (numeric difference approximation)
+  const zipDistance = (zip1: string, zip2: string): number => {
+    if (!zip1 || !zip2) return 99999;
+    const num1 = parseInt(zip1, 10);
+    const num2 = parseInt(zip2, 10);
+    if (isNaN(num1) || isNaN(num2)) return 99999;
+    return Math.abs(num1 - num2);
+  };
+
   const filteredProviders = providers.filter((provider) => {
     const specialtyMatch =
       selectedSpecialty === "All Specialties" || provider.specialty === selectedSpecialty;
@@ -512,6 +536,53 @@ const Providers = () => {
 
     return specialtyMatch && matchesText && matchesZip;
   });
+
+  // Proximity search when no results found
+  let proximityProviders: typeof providers = [];
+  let proximityMessage = "";
+  const searchLower = searchTerm.trim().toLowerCase();
+  const isZipSearch = /^\d{5}$/.test(searchLower);
+  const isCitySearch = searchLower.length > 2 && !/\d/.test(searchLower);
+
+  if (filteredProviders.length === 0 && searchTerm.trim() && (isZipSearch || isCitySearch)) {
+    if (isZipSearch) {
+      // Find 3 closest providers by zip code proximity
+      const providersWithDistance = providers
+        .filter(p => selectedSpecialty === "All Specialties" || p.specialty === selectedSpecialty)
+        .map(p => ({
+          provider: p,
+          distance: zipDistance(searchLower, extractZip(p.location))
+        }))
+        .filter(p => p.distance < 10000)
+        .sort((a, b) => a.distance - b.distance)
+        .slice(0, 3);
+      
+      if (providersWithDistance.length > 0) {
+        proximityProviders = providersWithDistance.map(p => p.provider);
+        proximityMessage = `No provider in ${searchLower}, showing closest locations:`;
+      }
+    } else if (isCitySearch) {
+      // Find providers in nearby cities
+      const cityProviders = providers
+        .filter(p => selectedSpecialty === "All Specialties" || p.specialty === selectedSpecialty)
+        .filter(p => {
+          const providerCity = extractCity(p.location).toLowerCase();
+          // Match cities that start with the same letters
+          return providerCity.length > 0 && (
+            providerCity.startsWith(searchLower.substring(0, 3)) ||
+            searchLower.startsWith(providerCity.substring(0, 3))
+          );
+        })
+        .slice(0, 3);
+      
+      if (cityProviders.length > 0) {
+        proximityProviders = cityProviders;
+        proximityMessage = `No provider in ${searchLower}, showing closest locations:`;
+      }
+    }
+  }
+
+  const displayProviders = filteredProviders.length > 0 ? filteredProviders : proximityProviders;
 
   return (
     <div className="min-h-screen bg-background">
@@ -557,8 +628,14 @@ const Providers = () => {
             </div>
           </div>
 
+          {proximityMessage && (
+            <div className="mb-6 p-4 bg-muted/50 border border-border rounded-lg">
+              <p className="text-sm text-muted-foreground">{proximityMessage}</p>
+            </div>
+          )}
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProviders.map((provider) => (
+            {displayProviders.map((provider) => (
                 <Card
                   key={`${provider.id}-${provider.name}-${provider.location}`}
                   className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-border hover:border-primary/50"
@@ -618,7 +695,7 @@ const Providers = () => {
             ))}
           </div>
 
-          {filteredProviders.length === 0 && (
+          {displayProviders.length === 0 && (
             <div className="text-center py-16">
               <p className="text-lg text-muted-foreground">
                 No providers found matching your criteria. Try adjusting your filters.
