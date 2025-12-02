@@ -135,6 +135,7 @@ const CITY_COORDS: Record<string, { lat: number; lng: number }> = {
   'salinas': { lat: 36.6777, lng: -121.6555 },
   'hayward': { lat: 37.6688, lng: -122.0808 },
   'sunnyvale': { lat: 37.3688, lng: -122.0363 },
+  'oceanside': { lat: 33.1959, lng: -117.3795 },
 };
 
 // Extract city from address and get coordinates
@@ -246,6 +247,7 @@ const Providers = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [userLocation, setUserLocation] = useState<{ lat: number; lng: number } | null>(null);
   const [searchMessage, setSearchMessage] = useState("");
+  const [isGeocoding, setIsGeocoding] = useState(false);
 
   const specialties = [
     "All Specialties",
@@ -329,6 +331,7 @@ const Providers = () => {
     if (!searchLower) {
       setUserLocation(null);
       setSearchMessage("");
+      setIsGeocoding(false);
       return;
     }
 
@@ -337,40 +340,47 @@ const Providers = () => {
     if (alias) {
       setUserLocation({ lat: alias.lat, lng: alias.lng });
       setSearchMessage(`Showing providers near ${alias.name}`);
+      setIsGeocoding(false);
+      return;
+    }
+
+    // Check if city exists in our database first
+    const cityCoords = CITY_COORDS[searchLower];
+    if (cityCoords) {
+      setUserLocation(cityCoords);
+      setSearchMessage(`Showing providers near ${searchLower}`);
+      setIsGeocoding(false);
       return;
     }
 
     // Check if it's a 5-digit zip code
     if (/^\d{5}$/.test(searchLower)) {
-      // Geocode the zip code
+      setIsGeocoding(true);
       geocodeAddress(`${searchLower}, California`).then(coords => {
         if (coords) {
           setUserLocation(coords);
           setSearchMessage(`Showing providers near ${searchLower}`);
+        } else {
+          setSearchMessage(`Could not find location: ${searchLower}`);
         }
+        setIsGeocoding(false);
       });
       return;
     }
 
-    // Try to geocode as city name
+    // Try to geocode as city name (only if not in database and length >= 3)
     if (searchLower.length >= 3 && !/\d/.test(searchLower)) {
-      // Check if city exists in our database
-      const cityCoords = CITY_COORDS[searchLower];
-      if (cityCoords) {
-        setUserLocation(cityCoords);
-        setSearchMessage(`Showing providers near ${searchLower}`);
-      } else {
-        // Try geocoding via API
-        geocodeAddress(`${searchLower}, California`).then(coords => {
-          if (coords) {
-            setUserLocation(coords);
-            setSearchMessage(`Showing providers near ${searchLower}`);
-          } else {
-            setUserLocation(null);
-            setSearchMessage("");
-          }
-        });
-      }
+      setIsGeocoding(true);
+      geocodeAddress(`${searchLower}, California`).then(coords => {
+        if (coords) {
+          setUserLocation(coords);
+          setSearchMessage(`Showing providers near ${searchLower}`);
+        } else {
+          setUserLocation(null);
+          setSearchMessage(`Could not find location: ${searchLower}`);
+        }
+        setIsGeocoding(false);
+      });
     }
   }, [searchTerm]);
 
@@ -403,10 +413,8 @@ const Providers = () => {
       return { ...provider, distance };
     }).sort((a, b) => (a.distance || 0) - (b.distance || 0));
 
-    // If no exact specialty match, show message
+    // If no exact specialty match, return all providers sorted by distance
     if (withDistance.length === 0) {
-      setSearchMessage(`No ${selectedSpecialty} providers found near ${searchTerm}, showing closest locations:`);
-      // Get all providers of any specialty and sort by distance
       const allWithDistance: ProviderWithDistance[] = providers.map(provider => {
         const providerCoords = getCoordsFromAddress(provider.location);
         if (!providerCoords) {
@@ -426,7 +434,24 @@ const Providers = () => {
 
     // Return top 5 closest
     return withDistance.slice(0, 5);
-  }, [selectedSpecialty, userLocation, searchTerm]);
+  }, [selectedSpecialty, userLocation]);
+
+  // Update search message based on results (moved out of useMemo to avoid side effects)
+  useEffect(() => {
+    if (!userLocation || isGeocoding) return;
+    
+    const filtered = selectedSpecialty !== "All Specialties" 
+      ? providers.filter(p => p.specialty === selectedSpecialty)
+      : providers;
+    
+    const hasSpecialtyMatch = filtered.length > 0 && displayProviders.some(p => 
+      selectedSpecialty === "All Specialties" || p.specialty === selectedSpecialty
+    );
+    
+    if (!hasSpecialtyMatch && selectedSpecialty !== "All Specialties") {
+      setSearchMessage(`No ${selectedSpecialty} providers found near ${searchTerm}, showing closest locations:`);
+    }
+  }, [displayProviders, selectedSpecialty, userLocation, searchTerm, isGeocoding]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -472,7 +497,13 @@ const Providers = () => {
             </div>
           </div>
 
-          {searchMessage && (
+          {isGeocoding && (
+            <div className="mb-6 p-4 bg-primary/10 border border-primary/20 rounded-lg">
+              <p className="text-sm text-foreground text-center font-medium">Finding location...</p>
+            </div>
+          )}
+
+          {searchMessage && !isGeocoding && (
             <div className="mb-6 p-4 bg-primary/10 border border-primary/20 rounded-lg">
               <p className="text-sm text-foreground text-center font-medium">{searchMessage}</p>
             </div>
