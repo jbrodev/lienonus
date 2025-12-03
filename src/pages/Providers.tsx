@@ -1231,6 +1231,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 37.998056,
+    longitude: -121.778611,
   },
   {
     id: 96,
@@ -1241,6 +1243,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 33.847222,
+    longitude: -117.891389,
   },
   {
     id: 97,
@@ -1251,6 +1255,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 33.831944,
+    longitude: -117.997222,
   },
   {
     id: 98,
@@ -1261,6 +1267,8 @@ const providers = [
     email: "scheduling@expertmri.com",
     website: "https://expertmri.com",
     acceptsLiens: true,
+    latitude: 35.354444,
+    longitude: -119.111389,
   },
   {
     id: 99,
@@ -1271,6 +1279,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 35.356389,
+    longitude: -119.042778,
   },
   {
     id: 100,
@@ -1281,6 +1291,8 @@ const providers = [
     email: "scheduling@expertmri.com",
     website: "https://expertmri.com",
     acceptsLiens: true,
+    latitude: 33.875833,
+    longitude: -118.130556,
   },
   {
     id: 101,
@@ -1291,6 +1303,8 @@ const providers = [
     email: "scheduling@expertmri.com",
     website: "https://expertmri.com",
     acceptsLiens: true,
+    latitude: 34.062222,
+    longitude: -118.354722,
   },
   {
     id: 102,
@@ -1301,6 +1315,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.064722,
+    longitude: -118.373333,
   },
   {
     id: 103,
@@ -1311,6 +1327,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.067778,
+    longitude: -118.376667,
   },
   {
     id: 104,
@@ -1321,6 +1339,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.068889,
+    longitude: -118.376111,
   },
   {
     id: 105,
@@ -1331,6 +1351,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.059167,
+    longitude: -118.391389,
   },
   {
     id: 106,
@@ -1341,6 +1363,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 33.120833,
+    longitude: -117.320556,
   },
   {
     id: 107,
@@ -1351,6 +1375,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.148056,
+    longitude: -118.701944,
   },
   {
     id: 108,
@@ -1361,6 +1387,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 37.692778,
+    longitude: -122.072222,
   },
   {
     id: 109,
@@ -1371,6 +1399,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 33.874722,
+    longitude: -118.099167,
   },
   {
     id: 110,
@@ -1381,6 +1411,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.012222,
+    longitude: -117.685556,
   },
   {
     id: 111,
@@ -1391,6 +1423,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.050278,
+    longitude: -117.312778,
   },
   {
     id: 112,
@@ -1401,6 +1435,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 37.971944,
+    longitude: -122.052778,
   },
   {
     id: 113,
@@ -1411,6 +1447,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 33.845833,
+    longitude: -117.565278,
   },
   {
     id: 114,
@@ -1421,6 +1459,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.105833,
+    longitude: -117.912222,
   },
   {
     id: 115,
@@ -1431,6 +1471,8 @@ const providers = [
     email: "scheduling@expertmri.com",
     website: "https://expertmri.com",
     acceptsLiens: true,
+    latitude: 34.022222,
+    longitude: -118.396667,
   },
   {
     id: 116,
@@ -1441,6 +1483,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 37.665278,
+    longitude: -122.461667,
   },
   {
     id: 117,
@@ -1451,6 +1495,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 33.946667,
+    longitude: -118.118056,
   },
   {
     id: 118,
@@ -1461,6 +1507,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 33.919444,
+    longitude: -118.138056,
   },
   {
     id: 119,
@@ -1471,6 +1519,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.062778,
+    longitude: -118.029722,
   },
   {
     id: 120,
@@ -1481,6 +1531,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 32.779167,
+    longitude: -115.572222,
   },
   {
     id: 121,
@@ -1491,6 +1543,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.160556,
+    longitude: -118.511111,
   },
   {
     id: 122,
@@ -1501,6 +1555,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 33.054444,
+    longitude: -117.261667,
   },
   {
     id: 123,
@@ -1511,6 +1567,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 33.044722,
+    longitude: -117.282778,
   },
   {
     id: 124,
@@ -1521,6 +1579,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 37.543889,
+    longitude: -121.979444,
   },
   {
     id: 125,
@@ -1531,6 +1591,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 37.551667,
+    longitude: -121.980556,
   },
   {
     id: 126,
@@ -1541,6 +1603,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 36.808333,
+    longitude: -119.793056,
   },
   {
     id: 127,
@@ -1551,6 +1615,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 36.821111,
+    longitude: -119.826944,
   },
   {
     id: 128,
@@ -1561,6 +1627,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 36.806944,
+    longitude: -119.834167,
   },
   {
     id: 129,
@@ -1571,16 +1639,20 @@ const providers = [
     email: "scheduling@expertmri.com",
     website: "https://expertmri.com",
     acceptsLiens: true,
+    latitude: 33.896667,
+    longitude: -117.928889,
   },
   {
     id: 130,
     name: "Excel Imaging Center",
     specialty: "MRI",
-    location: "13071 Brookhurst Street, suite 100, Garden Grove, CA 92843",
+    location: "13071 Brookhurst Street, Suite 100, Garden Grove, CA 92843",
     phone: "(714) 583-8126",
     email: "excelimagingcenter@gmail.com",
     website: "https://www.excelimagingcenter.com",
     acceptsLiens: true,
+    latitude: 33.771944,
+    longitude: -117.956111,
   },
   {
     id: 131,
@@ -1591,6 +1663,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 37.015278,
+    longitude: -121.569722,
   },
   {
     id: 132,
@@ -1601,6 +1675,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.204167,
+    longitude: -118.219444,
   },
   {
     id: 133,
@@ -1611,16 +1687,20 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.261667,
+    longitude: -118.493056,
   },
   {
     id: 134,
     name: "Precise Imaging",
     specialty: "MRI",
-    location: "430 w. Stetson Ave., Hemet, CA 92543",
+    location: "430 W. Stetson Ave., Hemet, CA 92543",
     phone: "(800) 558-2223",
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 33.739722,
+    longitude: -116.976111,
   },
   {
     id: 135,
@@ -1631,6 +1711,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 33.658056,
+    longitude: -117.766667,
   },
   {
     id: 136,
@@ -1641,6 +1723,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 37.891389,
+    longitude: -122.121667,
   },
   {
     id: 137,
@@ -1651,6 +1735,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 33.611944,
+    longitude: -117.711667,
   },
   {
     id: 138,
@@ -1661,6 +1747,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.655278,
+    longitude: -118.148889,
   },
   {
     id: 139,
@@ -1671,6 +1759,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 38.123611,
+    longitude: -121.295556,
   },
   {
     id: 140,
@@ -1681,6 +1771,8 @@ const providers = [
     email: "scheduling@expertmri.com",
     website: "https://expertmri.com",
     acceptsLiens: true,
+    latitude: 34.003889,
+    longitude: -118.278056,
   },
   {
     id: 141,
@@ -1691,6 +1783,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.069167,
+    longitude: -118.301389,
   },
   {
     id: 142,
@@ -1701,6 +1795,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.066389,
+    longitude: -118.262778,
   },
   {
     id: 143,
@@ -1711,6 +1807,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.003889,
+    longitude: -118.278056,
   },
   {
     id: 144,
@@ -1721,6 +1819,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.091944,
+    longitude: -118.291389,
   },
   {
     id: 145,
@@ -1731,6 +1831,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.062222,
+    longitude: -118.354722,
   },
   {
     id: 146,
@@ -1741,6 +1843,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 37.255278,
+    longitude: -121.961111,
   },
   {
     id: 147,
@@ -1751,6 +1855,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 37.240278,
+    longitude: -121.962222,
   },
   {
     id: 148,
@@ -1761,6 +1867,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 36.593611,
+    longitude: -121.896111,
   },
   {
     id: 149,
@@ -1771,6 +1879,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.090833,
+    longitude: -117.689722,
   },
   {
     id: 150,
@@ -1781,6 +1891,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 37.364167,
+    longitude: -122.066389,
   },
   {
     id: 151,
@@ -1791,6 +1903,8 @@ const providers = [
     email: "scheduling@expertmri.com",
     website: "https://expertmri.com",
     acceptsLiens: true,
+    latitude: 33.657222,
+    longitude: -117.869722,
   },
   {
     id: 152,
@@ -1801,6 +1915,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 33.657222,
+    longitude: -117.869722,
   },
   {
     id: 153,
@@ -1811,6 +1927,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 37.804722,
+    longitude: -122.274722,
   },
   {
     id: 154,
@@ -1821,6 +1939,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.065278,
+    longitude: -117.582778,
   },
   {
     id: 155,
@@ -1831,6 +1951,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.222222,
+    longitude: -119.151667,
   },
   {
     id: 156,
@@ -1841,6 +1963,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.159722,
+    longitude: -118.135833,
   },
   {
     id: 157,
@@ -1851,6 +1975,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 33.986111,
+    longitude: -118.095833,
   },
   {
     id: 158,
@@ -1861,6 +1987,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.068889,
+    longitude: -117.745556,
   },
   {
     id: 159,
@@ -1871,6 +1999,8 @@ const providers = [
     email: "schedule@ranchoopenmri.com",
     website: "https://ranchoopenmrimc.com",
     acceptsLiens: true,
+    latitude: 34.080278,
+    longitude: -117.574722,
   },
   {
     id: 160,
@@ -1881,6 +2011,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.048056,
+    longitude: -117.218056,
   },
   {
     id: 161,
@@ -1891,6 +2023,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 37.496389,
+    longitude: -122.228056,
   },
   {
     id: 162,
@@ -1901,6 +2035,8 @@ const providers = [
     email: "scheduling@expertmri.com",
     website: "https://expertmri.com",
     acceptsLiens: true,
+    latitude: 33.979167,
+    longitude: -117.380556,
   },
   {
     id: 163,
@@ -1911,6 +2047,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 33.902222,
+    longitude: -117.456389,
   },
   {
     id: 164,
@@ -1921,6 +2059,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 33.942222,
+    longitude: -117.303056,
   },
   {
     id: 165,
@@ -1931,6 +2071,8 @@ const providers = [
     email: "schedule@riversideeliteimaging.com",
     website: "https://ranchoopenmrimc.com",
     acceptsLiens: true,
+    latitude: 33.889722,
+    longitude: -117.280556,
   },
   {
     id: 166,
@@ -1941,6 +2083,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.065278,
+    longitude: -117.287778,
   },
   {
     id: 167,
@@ -1951,6 +2095,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.065278,
+    longitude: -117.289722,
   },
   {
     id: 168,
@@ -1961,6 +2107,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 33.456944,
+    longitude: -117.656667,
   },
   {
     id: 169,
@@ -1971,16 +2119,20 @@ const providers = [
     email: "scheduling@expertmri.com",
     website: "https://expertmri.com",
     acceptsLiens: true,
+    latitude: 32.834722,
+    longitude: -117.127778,
   },
   {
     id: 170,
     name: "Precise Imaging",
     specialty: "MRI",
-    location: "3902 El Cajon Blvd. Suite A, San Diego CA 92105",
+    location: "3902 El Cajon Blvd. Suite A, San Diego, CA 92105",
     phone: "(800) 558-2223",
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 32.755278,
+    longitude: -117.109722,
   },
   {
     id: 171,
@@ -1991,6 +2143,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 32.895833,
+    longitude: -117.165556,
   },
   {
     id: 172,
@@ -2001,6 +2155,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 32.876667,
+    longitude: -117.210278,
   },
   {
     id: 173,
@@ -2011,6 +2167,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 32.897222,
+    longitude: -117.133056,
   },
   {
     id: 174,
@@ -2021,6 +2179,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 37.786667,
+    longitude: -122.421389,
   },
   {
     id: 175,
@@ -2031,6 +2191,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 37.793889,
+    longitude: -122.399167,
   },
   {
     id: 176,
@@ -2041,6 +2203,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 37.785278,
+    longitude: -122.421111,
   },
   {
     id: 177,
@@ -2051,6 +2215,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 37.655278,
+    longitude: -122.398611,
   },
   {
     id: 178,
@@ -2061,6 +2227,8 @@ const providers = [
     email: "scheduling@expertmri.com",
     website: "https://expertmri.com",
     acceptsLiens: true,
+    latitude: 34.102778,
+    longitude: -118.107222,
   },
   {
     id: 179,
@@ -2071,6 +2239,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 37.324167,
+    longitude: -121.805833,
   },
   {
     id: 180,
@@ -2081,6 +2251,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 37.565278,
+    longitude: -122.323889,
   },
   {
     id: 181,
@@ -2091,6 +2263,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 37.776667,
+    longitude: -121.965556,
   },
   {
     id: 182,
@@ -2101,6 +2275,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 38.007778,
+    longitude: -122.541667,
   },
   {
     id: 183,
@@ -2111,6 +2287,8 @@ const providers = [
     email: "scheduling@expertmri.com",
     website: "https://expertmri.com",
     acceptsLiens: true,
+    latitude: 33.699722,
+    longitude: -117.891389,
   },
   {
     id: 184,
@@ -2121,6 +2299,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 33.715278,
+    longitude: -117.905833,
   },
   {
     id: 185,
@@ -2131,6 +2311,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 33.760278,
+    longitude: -117.853056,
   },
   {
     id: 186,
@@ -2141,6 +2323,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 33.757778,
+    longitude: -117.835556,
   },
   {
     id: 187,
@@ -2151,6 +2335,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 37.359722,
+    longitude: -121.958889,
   },
   {
     id: 188,
@@ -2161,6 +2347,8 @@ const providers = [
     email: "scheduling@expertmri.com",
     website: "https://expertmri.com",
     acceptsLiens: true,
+    latitude: 34.159722,
+    longitude: -118.448889,
   },
   {
     id: 189,
@@ -2171,6 +2359,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 33.778889,
+    longitude: -117.993056,
   },
   {
     id: 190,
@@ -2181,6 +2371,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 37.970278,
+    longitude: -121.285556,
   },
   {
     id: 191,
@@ -2191,6 +2383,8 @@ const providers = [
     email: "scheduling@expertmri.com",
     website: "https://expertmri.com",
     acceptsLiens: true,
+    latitude: 34.238889,
+    longitude: -118.369722,
   },
   {
     id: 192,
@@ -2201,6 +2395,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.189167,
+    longitude: -118.884722,
   },
   {
     id: 193,
@@ -2211,6 +2407,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.179722,
+    longitude: -118.888056,
   },
   {
     id: 194,
@@ -2221,6 +2419,8 @@ const providers = [
     email: "scheduling@expertmri.com",
     website: "https://expertmri.com",
     acceptsLiens: true,
+    latitude: 33.812222,
+    longitude: -118.345556,
   },
   {
     id: 195,
@@ -2231,6 +2431,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 33.812222,
+    longitude: -118.345556,
   },
   {
     id: 196,
@@ -2241,6 +2443,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 33.843611,
+    longitude: -118.351667,
   },
   {
     id: 197,
@@ -2251,6 +2455,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 37.509722,
+    longitude: -120.827778,
   },
   {
     id: 198,
@@ -2261,6 +2467,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.106389,
+    longitude: -117.632778,
   },
   {
     id: 199,
@@ -2271,6 +2479,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.192222,
+    longitude: -118.457222,
   },
   {
     id: 200,
@@ -2281,6 +2491,8 @@ const providers = [
     email: "Schedule@highdesertopenmrimc.com",
     website: "https://ranchoopenmrimc.com",
     acceptsLiens: true,
+    latitude: 34.511944,
+    longitude: -117.305278,
   },
   {
     id: 201,
@@ -2291,6 +2503,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.505556,
+    longitude: -117.291667,
   },
   {
     id: 202,
@@ -2301,6 +2515,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 36.926389,
+    longitude: -121.784722,
   },
   {
     id: 203,
@@ -2311,6 +2527,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.070278,
+    longitude: -117.942778,
   },
   {
     id: 204,
@@ -2321,6 +2539,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.058056,
+    longitude: -117.938889,
   },
   {
     id: 205,
@@ -2331,6 +2551,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.076389,
+    longitude: -117.908056,
   },
   {
     id: 206,
@@ -2341,6 +2563,8 @@ const providers = [
     email: "schedule@westminsteropenmrimc.com",
     website: "https://ranchoopenmrimc.com",
     acceptsLiens: true,
+    latitude: 33.759722,
+    longitude: -117.984722,
   },
   {
     id: 207,
@@ -2351,6 +2575,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.152778,
+    longitude: -118.822222,
   },
   {
     id: 208,
@@ -2361,6 +2587,8 @@ const providers = [
     email: "scheduling@precisemri.com",
     website: "https://www.precisemri.com",
     acceptsLiens: true,
+    latitude: 34.185556,
+    longitude: -118.606111,
   },
   // NEUROLOGIST
   {
