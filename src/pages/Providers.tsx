@@ -1157,6 +1157,8 @@ const providers = [
     email: "referrals@anildatemd.com",
     website: "https://scvmedicalgroup.com",
     acceptsLiens: true,
+    latitude: 34.416389,
+    longitude: -118.460833,
   },
   {
     id: 90,
@@ -1167,6 +1169,8 @@ const providers = [
     email: "referrals@anildatemd.com",
     website: "https://scvmedicalgroup.com",
     acceptsLiens: true,
+    latitude: 33.927056,
+    longitude: -118.353889,
   },
   {
     id: 91,
@@ -1177,6 +1181,8 @@ const providers = [
     email: "referrals@anildatemd.com",
     website: "https://scvmedicalgroup.com",
     acceptsLiens: true,
+    latitude: 34.061667,
+    longitude: -118.292778,
   },
   // MASSAGE THERAPY
   {
@@ -1188,6 +1194,8 @@ const providers = [
     email: "pi@agapewellnesscenter.com",
     website: "https://agapewellnesscenter.com",
     acceptsLiens: true,
+    latitude: 33.676948,
+    longitude: -117.907166,
   },
   {
     id: 93,
@@ -1198,16 +1206,20 @@ const providers = [
     email: "",
     website: "https://teamwellness.co",
     acceptsLiens: true,
+    latitude: 34.681988,
+    longitude: -118.154211,
   },
   {
     id: 94,
-    name: "Robinson Health Wellness",
+    name: "Robinson Health Wellness – Dan Robinson, DC",
     specialty: "Massage Therapy",
     location: "19127 Romar Street, Northridge, CA 91324",
     phone: "(703) 624-9876",
-    email: "drdanwrobinson@hotmail.com",
+    email: "drdanwrobinson@hotmail.com; robinsondarla@gmail.com",
     website: "",
     acceptsLiens: true,
+    latitude: 34.226188,
+    longitude: -118.550566,
   },
   // MRI
   {
