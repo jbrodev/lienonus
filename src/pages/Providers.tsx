@@ -116,9 +116,9 @@ const providers = [
   { id: 87, name: "Los Angeles Center for Ears, Nose, Throat and Allergy", specialty: "ENT", location: "41250 12th St West, Suite C, Palmdale, CA 93551", phone: "(949) 200-7667 Ext. 406", email: "pi@laent.com; inamhaq@laent.com; ehsankashif@laent.com", website: "https://www.laent.com", acceptsLiens: true, latitude: 34.580312, longitude: -118.118456 },
   { id: 88, name: "Los Angeles Center for Ears, Nose, Throat and Allergy", specialty: "ENT", location: "14650 Aviation Blvd., Suite 100, Hawthorne, CA 90250", phone: "(949) 200-7667 Ext. 406", email: "pi@laent.com; inamhaq@laent.com; ehsankashif@laent.com", website: "https://www.laent.com", acceptsLiens: true, latitude: 33.895678, longitude: -118.331789 },
 
-  // ENT Study Facility (Studies recommended by ENT are completed at the following facilities only)
-  { id: 421, name: "ENT Recommended Study Facility", specialty: "ENT Study Facility", location: "1700 E. Cesar Chavez Ave., Suite 2500, Los Angeles, CA 90033", phone: "", email: "", website: "", acceptsLiens: true, latitude: 34.048912, longitude: -118.220345 },
-  { id: 422, name: "ENT Recommended Study Facility", specialty: "ENT Study Facility", location: "1577 E. Chevy Chase Dr., Suite 330, Glendale, CA 91206", phone: "", email: "", website: "", acceptsLiens: true, latitude: 34.145678, longitude: -118.243456 },
+  // ENT Study Facilities (grouped with ENT)
+  { id: 421, name: "ENT Recommended Study Facility", specialty: "ENT", location: "1700 E. Cesar Chavez Ave., Suite 2500, Los Angeles, CA 90033", phone: "", email: "", website: "", acceptsLiens: true, latitude: 34.048912, longitude: -118.220345, isStudyFacility: true },
+  { id: 422, name: "ENT Recommended Study Facility", specialty: "ENT", location: "1577 E. Chevy Chase Dr., Suite 330, Glendale, CA 91206", phone: "", email: "", website: "", acceptsLiens: true, latitude: 34.145678, longitude: -118.243456, isStudyFacility: true },
 
   // INTERNAL MEDICINE
   { id: 89, name: "SCV Medical Group", specialty: "Internal Medicine", location: "27141 Hidaway Ave., Suite 106, Canyon Country, CA 91351", phone: "(661) 252-8469", email: "referrals@anildatemd.com", website: "https://scvmedicalgroup.com", acceptsLiens: true },
@@ -414,7 +414,6 @@ const specialties = [
   "Aquatic Therapy",
   "Chiropractic",
   "ENT",
-  "ENT Study Facility",
   "Internal Medicine",
   "Massage Therapy",
   "MRI",
@@ -564,16 +563,10 @@ const Providers = () => {
             </div>
           </div>
 
-          {(selectedSpecialty === "ENT Study Facility" || filteredProviders.some(p => p.specialty === "ENT Study Facility")) && (
-            <div className="mb-4 p-4 bg-muted/50 border border-border rounded-lg">
-              <p className="text-sm text-muted-foreground italic">
-                Studies recommended by ENT are completed at the following facilities only:
-              </p>
-            </div>
-          )}
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProviders.map((provider) => (
+            {filteredProviders
+              .filter(p => !p.isStudyFacility)
+              .map((provider) => (
                 <Card
                   key={`${provider.id}-${provider.name}-${provider.location}`}
                   className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-border hover:border-primary/50"
@@ -632,6 +625,49 @@ const Providers = () => {
               </Card>
             ))}
           </div>
+
+          {/* ENT Study Facilities Section */}
+          {selectedSpecialty === "ENT" && filteredProviders.some(p => p.isStudyFacility) && (
+            <>
+              <div className="mt-8 mb-4 p-4 bg-muted/50 border border-border rounded-lg">
+                <p className="text-sm text-muted-foreground italic">
+                  Studies recommended by ENT are completed at the following facilities only:
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredProviders
+                  .filter(p => p.isStudyFacility)
+                  .map((provider) => (
+                    <Card
+                      key={`${provider.id}-${provider.name}-${provider.location}`}
+                      className="hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-border hover:border-primary/50"
+                    >
+                      <CardHeader>
+                        <div className="flex items-start justify-between">
+                          <div>
+                            <CardTitle className="text-xl mb-2">{provider.name}</CardTitle>
+                            <Badge className="bg-gradient-to-r from-primary to-secondary text-primary-foreground border-0">
+                              ENT Study Facility
+                            </Badge>
+                          </div>
+                        </div>
+                      </CardHeader>
+                      <CardContent className="space-y-3">
+                        <div className="flex items-center text-sm text-muted-foreground">
+                          <MapPin size={16} className="mr-2 text-primary" />
+                          {provider.location}
+                        </div>
+                        <div className="pt-2 space-y-2">
+                          <Badge variant="outline" className="text-secondary border-secondary">
+                            ✓ Accepts Liens
+                          </Badge>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+              </div>
+            </>
+          )}
 
           {filteredProviders.length === 0 && (
             <div className="text-center py-16">
