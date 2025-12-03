@@ -1033,6 +1033,30 @@ const providers = [
   latitude: 34.145678,
   longitude: -118.243456,
   isStudyFacility: true
+}, {
+  id: 423,
+  name: "ENT Recommended Study Facility – South Bay",
+  specialty: "ENT",
+  location: "14650 Aviation Blvd., Suite 100, South Bay, CA 90250",
+  phone: "(949) 200-7667 Ext. 406",
+  email: "pi@laent.com",
+  website: "",
+  acceptsLiens: true,
+  latitude: 33.895678,
+  longitude: -118.331789,
+  isStudyFacility: true
+}, {
+  id: 424,
+  name: "ENT Recommended Study Facility – Hawthorne",
+  specialty: "ENT",
+  location: "14650 Aviation Blvd., Suite 100, Hawthorne, CA 90250",
+  phone: "(949) 200-7667 Ext. 406",
+  email: "pi@laent.com",
+  website: "",
+  acceptsLiens: true,
+  latitude: 33.895678,
+  longitude: -118.331789,
+  isStudyFacility: true
 },
 // INTERNAL MEDICINE
 {
