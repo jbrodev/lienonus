@@ -2595,11 +2595,25 @@ const providers = [
     id: 375,
     name: "Synergex Med",
     specialty: "Neurologist",
-    location: "710 S. Brookhurts St., Suite D, Anaheim, CA 92804",
+    location: "710 S. Brookhurst St., Suite D, Anaheim, CA 92804",
     phone: "(562) 414-4452",
     email: "admin@synergexmed.com",
     website: "https://www.synergexmed.com",
     acceptsLiens: true,
+    latitude: 33.824167,
+    longitude: -117.959167,
+  },
+  {
+    id: 376,
+    name: "Southern California Injury Treatment Center",
+    specialty: "Neurologist",
+    location: "15857 Pomona Rincon Rd., Chino Hills, CA 91709",
+    phone: "(844) 787-3286",
+    email: "injurytreatmentcenter909@gmail.com",
+    website: null,
+    acceptsLiens: true,
+    latitude: 33.966389,
+    longitude: -117.696389,
   },
   {
     id: 377,
@@ -2610,6 +2624,8 @@ const providers = [
     email: "admin@synergexmed.com",
     website: "https://www.synergexmed.com",
     acceptsLiens: true,
+    latitude: 34.009722,
+    longitude: -118.411944,
   },
   {
     id: 378,
@@ -2620,6 +2636,9 @@ const providers = [
     email: "admin@synergexmed.com",
     website: "https://www.synergexmed.com",
     acceptsLiens: true,
+    note: "TBI Specialist",
+    latitude: 33.694722,
+    longitude: -117.988889,
   },
   {
     id: 379,
@@ -2630,6 +2649,8 @@ const providers = [
     email: "admin@synergexmed.com",
     website: "https://www.synergexmed.com",
     acceptsLiens: true,
+    latitude: 33.860278,
+    longitude: -118.153056,
   },
   {
     id: 380,
@@ -2640,6 +2661,8 @@ const providers = [
     email: "admin@synergexmed.com",
     website: "https://www.synergexmed.com",
     acceptsLiens: true,
+    latitude: 34.233611,
+    longitude: -118.562500,
   },
   {
     id: 381,
@@ -2650,6 +2673,8 @@ const providers = [
     email: "admin@synergexmed.com",
     website: "https://www.synergexmed.com",
     acceptsLiens: true,
+    latitude: 33.191944,
+    longitude: -117.346944,
   },
   {
     id: 382,
@@ -2660,16 +2685,20 @@ const providers = [
     email: "admin@synergexmed.com",
     website: "https://www.synergexmed.com",
     acceptsLiens: true,
+    latitude: 34.128611,
+    longitude: -118.147222,
   },
   {
     id: 383,
     name: "Synergex Med",
     specialty: "Neurologist",
-    location: "4234 Riverwalk Parkway, Suite 110, Riverside, CA 92595",
+    location: "4234 Riverwalk Parkway, Suite 110, Riverside, CA 92505",
     phone: "(562) 414-4452",
     email: "admin@synergexmed.com",
     website: "https://www.synergexmed.com",
     acceptsLiens: true,
+    latitude: 33.907222,
+    longitude: -117.492778,
   },
   // NEUROSURGEON
   {
@@ -2681,6 +2710,8 @@ const providers = [
     email: "Newpatients@calneuro.org",
     website: "https://californianeurosurgicalinstitute.com",
     acceptsLiens: true,
+    latitude: 34.419722,
+    longitude: -118.555278,
   },
   {
     id: 210,
@@ -2691,6 +2722,8 @@ const providers = [
     email: "Newpatients@calneuro.org",
     website: "https://californianeurosurgicalinstitute.com",
     acceptsLiens: true,
+    latitude: 34.650278,
+    longitude: -118.148333,
   },
   {
     id: 211,
@@ -2701,6 +2734,8 @@ const providers = [
     email: "Newpatients@calneuro.org",
     website: "https://californianeurosurgicalinstitute.com",
     acceptsLiens: true,
+    latitude: 34.419722,
+    longitude: -118.555278,
   },
   // OPHTHALMOLOGIST
   {
