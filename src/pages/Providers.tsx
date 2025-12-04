@@ -4609,24 +4609,30 @@ const Providers = () => {
   const searchResults = useMemo(() => {
     const q = searchTerm.trim();
     if (!q) {
-      return { locationResult: null, userCoords: null };
+      return { locationResult: null, userCoords: null, isExactMatch: false };
     }
     
     // Try to find a California location match
     const locationResult = searchCaliforniaLocation(q);
     
     if (locationResult.location && locationResult.confidence > 0.5) {
+      // Check if it's an exact city name, zip code, or alias match
+      const isExactMatch = locationResult.matchType === 'exact' || 
+                          locationResult.matchType === 'zip' || 
+                          locationResult.matchType === 'alias';
+      
       return {
         locationResult,
         userCoords: {
           lat: locationResult.location.lat,
           lng: locationResult.location.lng,
           city: locationResult.location.city
-        }
+        },
+        isExactMatch
       };
     }
     
-    return { locationResult: null, userCoords: null };
+    return { locationResult: null, userCoords: null, isExactMatch: false };
   }, [searchTerm]);
 
   const trackProviderClick = async (providerId: number, providerName: string, specialty: string, eventType: string) => {
@@ -4682,8 +4688,8 @@ const Providers = () => {
     let result = providers.filter((provider) => {
       const specialtyMatch = selectedSpecialty === "All Specialties" || provider.specialty === selectedSpecialty;
       
-      // If we have a location match, don't filter by text - we'll sort by distance instead
-      if (searchResults.userCoords) {
+      // If we have a location match that's NOT an exact match, don't filter by text - we'll sort by distance instead
+      if (searchResults.userCoords && !searchResults.isExactMatch) {
         return specialtyMatch;
       }
       
@@ -4709,8 +4715,8 @@ const Providers = () => {
       return specialtyMatch && matchesText && matchesZip;
     });
 
-    // If we have user coordinates, calculate distances and sort
-    if (searchResults.userCoords) {
+    // If we have user coordinates and it's NOT an exact match, calculate distances and sort
+    if (searchResults.userCoords && !searchResults.isExactMatch) {
       result = result
         .map(provider => {
           if (provider.latitude && provider.longitude) {
@@ -4725,7 +4731,7 @@ const Providers = () => {
           return { ...provider, distance: Infinity };
         })
         .sort((a, b) => (a.distance ?? Infinity) - (b.distance ?? Infinity))
-        .slice(0, 5); // Return top 5 closest
+        .slice(0, 5); // Return top 5 closest only for fuzzy matches
     }
 
     return result;
@@ -4775,8 +4781,8 @@ const Providers = () => {
             </div>
           </div>
 
-          {/* Location search indicator */}
-          {searchResults.userCoords && (
+          {/* Location search indicator - only show for fuzzy/partial matches */}
+          {searchResults.userCoords && !searchResults.isExactMatch && (
             <div className="mb-6 p-4 bg-primary/10 border border-primary/20 rounded-lg text-center">
               <p className="text-sm font-medium flex items-center justify-center gap-2">
                 <Navigation2 size={16} className="text-primary" />
