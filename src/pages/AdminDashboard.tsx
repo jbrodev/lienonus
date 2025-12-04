@@ -7,8 +7,9 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
-import { Loader2, Trash2, ArrowUpDown } from "lucide-react";
+import { Loader2, Trash2, ArrowUpDown, RotateCcw, ChevronDown, ChevronUp } from "lucide-react";
 import Navigation from "@/components/Navigation";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 
 interface AnalyticsData {
   id: string;
@@ -17,18 +18,21 @@ interface AnalyticsData {
   event_type: string;
   specialty: string;
   created_at: string;
+  deleted_at?: string | null;
 }
 
 const AdminDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
   const [analytics, setAnalytics] = useState<AnalyticsData[]>([]);
+  const [deletedAnalytics, setDeletedAnalytics] = useState<AnalyticsData[]>([]);
   const [filteredAnalytics, setFilteredAnalytics] = useState<AnalyticsData[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [eventTypeFilter, setEventTypeFilter] = useState("all");
   const [specialtyFilter, setSpecialtyFilter] = useState("all");
   const [sortField, setSortField] = useState<keyof AnalyticsData>("created_at");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
+  const [deletedSectionOpen, setDeletedSectionOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -66,14 +70,31 @@ const AdminDashboard = () => {
 
   const fetchAnalytics = async () => {
     try {
-      const { data, error } = await supabase
+      // Fetch active (non-deleted) records
+      const { data: activeData, error: activeError } = await supabase
         .from("provider_analytics")
         .select("*")
+        .is("deleted_at", null)
         .order("created_at", { ascending: false });
 
-      if (error) throw error;
-      setAnalytics(data || []);
-      setFilteredAnalytics(data || []);
+      if (activeError) throw activeError;
+
+      // Fetch soft-deleted records (within 7 days)
+      const sevenDaysAgo = new Date();
+      sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+      
+      const { data: deletedData, error: deletedError } = await supabase
+        .from("provider_analytics")
+        .select("*")
+        .not("deleted_at", "is", null)
+        .gte("deleted_at", sevenDaysAgo.toISOString())
+        .order("deleted_at", { ascending: false });
+
+      if (deletedError) throw deletedError;
+
+      setAnalytics(activeData || []);
+      setDeletedAnalytics(deletedData || []);
+      setFilteredAnalytics(activeData || []);
     } catch (error: any) {
       toast.error("Failed to load analytics data");
     } finally {
@@ -149,7 +170,49 @@ const AdminDashboard = () => {
   const uniqueEventTypes = Array.from(new Set(analytics.map((item) => item.event_type)));
   const uniqueSpecialties = Array.from(new Set(analytics.map((item) => item.specialty)));
 
-  const handleDelete = async (id: string) => {
+  const handleSoftDelete = async (id: string) => {
+    try {
+      const { error } = await supabase
+        .from("provider_analytics")
+        .update({ deleted_at: new Date().toISOString() })
+        .eq("id", id);
+
+      if (error) throw error;
+      
+      const deletedItem = analytics.find(item => item.id === id);
+      if (deletedItem) {
+        deletedItem.deleted_at = new Date().toISOString();
+        setDeletedAnalytics([deletedItem, ...deletedAnalytics]);
+      }
+      setAnalytics(analytics.filter(item => item.id !== id));
+      toast.success("Record moved to deleted items (will be permanently deleted in 7 days)");
+    } catch (error: any) {
+      toast.error("Failed to delete record");
+    }
+  };
+
+  const handleRestore = async (id: string) => {
+    try {
+      const { error } = await supabase
+        .from("provider_analytics")
+        .update({ deleted_at: null })
+        .eq("id", id);
+
+      if (error) throw error;
+      
+      const restoredItem = deletedAnalytics.find(item => item.id === id);
+      if (restoredItem) {
+        restoredItem.deleted_at = null;
+        setAnalytics([restoredItem, ...analytics]);
+      }
+      setDeletedAnalytics(deletedAnalytics.filter(item => item.id !== id));
+      toast.success("Record restored successfully");
+    } catch (error: any) {
+      toast.error("Failed to restore record");
+    }
+  };
+
+  const handlePermanentDelete = async (id: string) => {
     try {
       const { error } = await supabase
         .from("provider_analytics")
@@ -158,11 +221,20 @@ const AdminDashboard = () => {
 
       if (error) throw error;
       
-      setAnalytics(analytics.filter(item => item.id !== id));
-      toast.success("Record deleted successfully");
+      setDeletedAnalytics(deletedAnalytics.filter(item => item.id !== id));
+      toast.success("Record permanently deleted");
     } catch (error: any) {
-      toast.error("Failed to delete record");
+      toast.error("Failed to permanently delete record");
     }
+  };
+
+  const getDaysRemaining = (deletedAt: string) => {
+    const deleteDate = new Date(deletedAt);
+    const expiryDate = new Date(deleteDate);
+    expiryDate.setDate(expiryDate.getDate() + 7);
+    const now = new Date();
+    const daysRemaining = Math.ceil((expiryDate.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+    return Math.max(0, daysRemaining);
   };
 
   const handleExport = () => {
@@ -343,7 +415,7 @@ const AdminDashboard = () => {
                           <Button
                             variant="ghost"
                             size="sm"
-                            onClick={() => handleDelete(item.id)}
+                            onClick={() => handleSoftDelete(item.id)}
                           >
                             <Trash2 className="h-4 w-4" />
                           </Button>
@@ -353,6 +425,76 @@ const AdminDashboard = () => {
                   </TableBody>
                 </Table>
               </div>
+            )}
+
+            {/* Deleted Items Section */}
+            {deletedAnalytics.length > 0 && (
+              <Collapsible open={deletedSectionOpen} onOpenChange={setDeletedSectionOpen}>
+                <CollapsibleTrigger asChild>
+                  <Button variant="outline" className="w-full justify-between mt-6">
+                    <span>Deleted Items ({deletedAnalytics.length}) - Auto-deleted after 7 days</span>
+                    {deletedSectionOpen ? (
+                      <ChevronUp className="h-4 w-4" />
+                    ) : (
+                      <ChevronDown className="h-4 w-4" />
+                    )}
+                  </Button>
+                </CollapsibleTrigger>
+                <CollapsibleContent className="mt-4">
+                  <div className="overflow-x-auto border rounded-lg">
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Provider ID</TableHead>
+                          <TableHead>Provider Name</TableHead>
+                          <TableHead>Specialty</TableHead>
+                          <TableHead>Event Type</TableHead>
+                          <TableHead>Deleted At</TableHead>
+                          <TableHead>Days Remaining</TableHead>
+                          <TableHead className="text-right">Actions</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {deletedAnalytics.map((item) => (
+                          <TableRow key={item.id} className="bg-muted/50">
+                            <TableCell className="font-medium">{item.provider_id}</TableCell>
+                            <TableCell>{item.provider_name}</TableCell>
+                            <TableCell>{item.specialty}</TableCell>
+                            <TableCell>{formatEventType(item.event_type)}</TableCell>
+                            <TableCell>
+                              {item.deleted_at && new Date(item.deleted_at).toLocaleString()}
+                            </TableCell>
+                            <TableCell>
+                              <span className="text-destructive font-medium">
+                                {item.deleted_at && getDaysRemaining(item.deleted_at)} days
+                              </span>
+                            </TableCell>
+                            <TableCell className="text-right space-x-2">
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => handleRestore(item.id)}
+                                title="Restore"
+                              >
+                                <RotateCcw className="h-4 w-4" />
+                              </Button>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => handlePermanentDelete(item.id)}
+                                title="Delete permanently"
+                                className="text-destructive hover:text-destructive"
+                              >
+                                <Trash2 className="h-4 w-4" />
+                              </Button>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </div>
+                </CollapsibleContent>
+              </Collapsible>
             )}
           </CardContent>
         </Card>

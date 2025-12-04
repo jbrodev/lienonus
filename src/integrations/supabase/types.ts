@@ -17,6 +17,7 @@ export type Database = {
       provider_analytics: {
         Row: {
           created_at: string
+          deleted_at: string | null
           event_type: string
           id: string
           provider_id: number
@@ -25,6 +26,7 @@ export type Database = {
         }
         Insert: {
           created_at?: string
+          deleted_at?: string | null
           event_type: string
           id?: string
           provider_id: number
@@ -33,6 +35,7 @@ export type Database = {
         }
         Update: {
           created_at?: string
+          deleted_at?: string | null
           event_type?: string
           id?: string
           provider_id?: number
@@ -67,6 +70,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      cleanup_old_deleted_analytics: { Args: never; Returns: undefined }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
