@@ -1015,7 +1015,7 @@ CALIFORNIA_LOCATIONS.forEach(location => {
 // Search result interface
 export interface LocationSearchResult {
   location: CaliforniaLocation | null;
-  matchType: 'exact' | 'zip' | 'alias' | 'fuzzy' | 'none';
+  matchType: 'exact' | 'zip' | 'alias' | 'partial' | 'fuzzy' | 'none';
   confidence: number;
 }
 
@@ -1076,22 +1076,28 @@ export function searchCaliforniaLocation(query: string): LocationSearchResult {
     }
   }
   
-  // 3. Check for alias match
+  // 3. Check for alias match (exact)
   const aliasMatch = aliasIndex.get(normalizedQuery);
   if (aliasMatch) {
-    return { location: aliasMatch, matchType: 'alias', confidence: 0.95 };
+    return { location: aliasMatch, matchType: 'alias', confidence: 1.0 };
   }
   
-  // 4. Check if query starts with a known city name or alias
-  for (const [key, location] of cityIndex) {
-    if (key.startsWith(normalizedQuery) || normalizedQuery.startsWith(key)) {
-      return { location, matchType: 'fuzzy', confidence: 0.85 };
+  // 4. Check if query is a prefix of a known city name (partial typing)
+  // Only match if query is at least 3 chars to avoid false positives
+  if (normalizedQuery.length >= 3) {
+    for (const [key, location] of cityIndex) {
+      if (key.startsWith(normalizedQuery)) {
+        return { location, matchType: 'partial', confidence: 0.95 };
+      }
     }
   }
   
-  for (const [key, location] of aliasIndex) {
-    if (key.startsWith(normalizedQuery) || normalizedQuery.startsWith(key)) {
-      return { location, matchType: 'fuzzy', confidence: 0.8 };
+  // 5. Check if query is a prefix of an alias (partial typing)
+  if (normalizedQuery.length >= 3) {
+    for (const [key, location] of aliasIndex) {
+      if (key.startsWith(normalizedQuery)) {
+        return { location, matchType: 'partial', confidence: 0.9 };
+      }
     }
   }
   
