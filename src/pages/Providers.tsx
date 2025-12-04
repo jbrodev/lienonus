@@ -4805,10 +4805,7 @@ const Providers = () => {
             <div className="mb-6 p-4 bg-primary/10 border border-primary/20 rounded-lg text-center">
               <p className="text-sm font-medium flex items-center justify-center gap-2">
                 <Navigation2 size={16} className="text-primary" />
-                {searchResults.isExactMatch 
-                  ? `No ${selectedSpecialty !== "All Specialties" ? selectedSpecialty + " " : ""}providers in ${searchResults.userCoords.city}, showing closest locations:`
-                  : `Showing ${filteredProviders.length} closest ${selectedSpecialty !== "All Specialties" ? selectedSpecialty : ""} providers near`
-                } {!searchResults.isExactMatch && <strong>{searchResults.userCoords.city}</strong>}
+                Showing {filteredProviders.length} closest {selectedSpecialty !== "All Specialties" ? selectedSpecialty + " " : ""}providers near <strong>{/^\d{5}$/.test(searchTerm.trim()) ? searchTerm.trim() : searchResults.userCoords.city}</strong>
               </p>
             </div>
           )}
