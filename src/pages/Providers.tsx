@@ -4026,6 +4026,8 @@ const providers = [
     email: "claims@caspianpharmacy.com",
     website: "",
     acceptsLiens: true,
+    latitude: 34.164167,
+    longitude: -118.602778,
   },
   // PHYSICAL THERAPY
   {
@@ -4037,6 +4039,8 @@ const providers = [
     email: "ptreferral@apmi.net",
     website: "https://wsptn.com",
     acceptsLiens: true,
+    latitude: 33.841389,
+    longitude: -117.915556,
   },
   {
     id: 385,
@@ -4047,6 +4051,8 @@ const providers = [
     email: "ptreferral@apmi.net",
     website: "https://wsptn.com",
     acceptsLiens: true,
+    latitude: 34.087222,
+    longitude: -117.967222,
   },
   {
     id: 386,
@@ -4057,6 +4063,8 @@ const providers = [
     email: "ptreferral@apmi.net",
     website: "https://wsptn.com",
     acceptsLiens: true,
+    latitude: 34.181111,
+    longitude: -118.308889,
   },
   {
     id: 387,
@@ -4067,6 +4075,8 @@ const providers = [
     email: "ptreferral@apmi.net",
     website: "https://wsptn.com",
     acceptsLiens: true,
+    latitude: 34.243889,
+    longitude: -118.608889,
   },
   {
     id: 388,
@@ -4077,6 +4087,8 @@ const providers = [
     email: "pi@agapewellnesscenter.com",
     website: "https://agapewellnesscenter.com",
     acceptsLiens: true,
+    latitude: 33.676948,
+    longitude: -117.907166,
   },
   {
     id: 389,
@@ -4087,6 +4099,8 @@ const providers = [
     email: "phoenixpw2019@gmail.com",
     website: "https://phnxpt.com",
     acceptsLiens: true,
+    latitude: 34.145556,
+    longitude: -118.243056,
   },
   {
     id: 390,
@@ -4097,6 +4111,8 @@ const providers = [
     email: "ptreferral@apmi.net",
     website: "https://wsptn.com",
     acceptsLiens: true,
+    latitude: 33.910278,
+    longitude: -118.347222,
   },
   {
     id: 391,
@@ -4107,6 +4123,8 @@ const providers = [
     email: "ptreferral@apmi.net",
     website: "https://wsptn.com",
     acceptsLiens: true,
+    latitude: 34.098889,
+    longitude: -118.326944,
   },
   {
     id: 392,
@@ -4117,6 +4135,8 @@ const providers = [
     email: "ptreferral@apmi.net",
     website: "https://wsptn.com",
     acceptsLiens: true,
+    latitude: 33.846111,
+    longitude: -118.168056,
   },
   {
     id: 393,
@@ -4127,6 +4147,8 @@ const providers = [
     email: "ptreferral@apmi.net",
     website: "https://wsptn.com",
     acceptsLiens: true,
+    latitude: 34.046389,
+    longitude: -118.303056,
   },
   {
     id: 394,
@@ -4137,6 +4159,8 @@ const providers = [
     email: "ptreferral@apmi.net",
     website: "https://wsptn.com",
     acceptsLiens: true,
+    latitude: 34.090833,
+    longitude: -117.689722,
   },
   {
     id: 395,
@@ -4147,6 +4171,8 @@ const providers = [
     email: "ptreferral@apmi.net",
     website: "https://wsptn.com",
     acceptsLiens: true,
+    latitude: 34.025278,
+    longitude: -118.116389,
   },
   {
     id: 396,
@@ -4157,6 +4183,8 @@ const providers = [
     email: "ptreferral@apmi.net",
     website: "https://wsptn.com",
     acceptsLiens: true,
+    latitude: 33.933056,
+    longitude: -117.220278,
   },
   {
     id: 397,
@@ -4167,6 +4195,8 @@ const providers = [
     email: "drdanwrobinson@hotmail.com",
     website: "N/A",
     acceptsLiens: true,
+    latitude: 34.226188,
+    longitude: -118.550566,
   },
   {
     id: 398,
@@ -4177,6 +4207,8 @@ const providers = [
     email: "ptreferral@apmi.net",
     website: "https://wsptn.com",
     acceptsLiens: true,
+    latitude: 34.580811,
+    longitude: -118.095977,
   },
   {
     id: 399,
@@ -4187,6 +4219,8 @@ const providers = [
     email: "scheduling@phnxpt.com",
     website: "https://phnxpt.com",
     acceptsLiens: true,
+    latitude: 34.078889,
+    longitude: -117.570278,
   },
   {
     id: 410,
@@ -4197,6 +4231,8 @@ const providers = [
     email: "riverside@phnxpt.com",
     website: "https://phnxpt.com",
     acceptsLiens: true,
+    latitude: 33.985278,
+    longitude: -117.334167,
   },
   {
     id: 411,
@@ -4207,6 +4243,8 @@ const providers = [
     email: "ptreferral@apmi.net",
     website: "https://wsptn.com",
     acceptsLiens: true,
+    latitude: 33.931667,
+    longitude: -117.458056,
   },
   {
     id: 412,
@@ -4217,6 +4255,8 @@ const providers = [
     email: "ptreferral@apmi.net",
     website: "https://wsptn.com",
     acceptsLiens: true,
+    latitude: 34.135278,
+    longitude: -117.258611,
   },
   {
     id: 413,
@@ -4227,6 +4267,8 @@ const providers = [
     email: "ptreferral@apmi.net",
     website: "https://wsptn.com",
     acceptsLiens: true,
+    latitude: 33.739167,
+    longitude: -117.869167,
   },
   {
     id: 414,
@@ -4237,6 +4279,8 @@ const providers = [
     email: "ptreferral@apmi.net",
     website: "https://wsptn.com",
     acceptsLiens: true,
+    latitude: 34.046389,
+    longitude: -118.462056,
   },
   {
     id: 415,
@@ -4247,6 +4291,8 @@ const providers = [
     email: "ptreferral@apmi.net",
     website: "https://wsptn.com",
     acceptsLiens: true,
+    latitude: 33.499722,
+    longitude: -117.149444,
   },
   {
     id: 416,
@@ -4257,6 +4303,8 @@ const providers = [
     email: "ptreferral@apmi.net",
     website: "https://wsptn.com",
     acceptsLiens: true,
+    latitude: 34.421111,
+    longitude: -118.600556,
   },
   {
     id: 417,
@@ -4267,6 +4315,8 @@ const providers = [
     email: "ptreferral@apmi.net",
     website: "https://wsptn.com",
     acceptsLiens: true,
+    latitude: 34.180278,
+    longitude: -118.488889,
   },
   // PODIATRIST
   {
