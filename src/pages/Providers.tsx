@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,9 +6,14 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Search, MapPin, Phone, Mail, ExternalLink } from "lucide-react";
+import { Search, MapPin, Phone, Mail, ExternalLink, Navigation2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { 
+  searchCaliforniaLocation, 
+  calculateDistance,
+  type LocationSearchResult 
+} from "@/data/californiaLocations";
 const providers = [
   // ACUPUNCTURE
   {
@@ -4598,6 +4603,32 @@ const Providers = () => {
   const [searchParams] = useSearchParams();
   const [selectedSpecialty, setSelectedSpecialty] = useState("All Specialties");
   const [searchTerm, setSearchTerm] = useState("");
+  const [locationSearch, setLocationSearch] = useState<LocationSearchResult | null>(null);
+
+  // Detect location-based search and calculate distances
+  const searchResults = useMemo(() => {
+    const q = searchTerm.trim();
+    if (!q) {
+      return { locationResult: null, userCoords: null };
+    }
+    
+    // Try to find a California location match
+    const locationResult = searchCaliforniaLocation(q);
+    
+    if (locationResult.location && locationResult.confidence > 0.5) {
+      return {
+        locationResult,
+        userCoords: {
+          lat: locationResult.location.lat,
+          lng: locationResult.location.lng,
+          city: locationResult.location.city
+        }
+      };
+    }
+    
+    return { locationResult: null, userCoords: null };
+  }, [searchTerm]);
+
   const trackProviderClick = async (providerId: number, providerName: string, specialty: string, eventType: string) => {
     const storageKey = `provider_${providerId}_${eventType}`;
 
@@ -4645,28 +4676,61 @@ const Providers = () => {
       setSearchTerm(urlSearch);
     }
   }, [searchParams]);
-  const filteredProviders = providers.filter((provider) => {
-    const specialtyMatch = selectedSpecialty === "All Specialties" || provider.specialty === selectedSpecialty;
-    const q = searchTerm.trim().toLowerCase();
 
-    // Extract 3-5 digit zip partials from the search term
-    const zipPartials = Array.from(q.matchAll(/\b(\d{3,5})\b/g), (m) => m[1]);
+  // Filter and sort providers based on search and location
+  const filteredProviders = useMemo(() => {
+    let result = providers.filter((provider) => {
+      const specialtyMatch = selectedSpecialty === "All Specialties" || provider.specialty === selectedSpecialty;
+      
+      // If we have a location match, don't filter by text - we'll sort by distance instead
+      if (searchResults.userCoords) {
+        return specialtyMatch;
+      }
+      
+      const q = searchTerm.trim().toLowerCase();
+      if (!q) return specialtyMatch;
 
-    // Extract provider ZIP codes (5 digits)
-    const providerZips = Array.from(provider.location.matchAll(/\b(\d{5})\b/g), (m) => m[1]);
-    const matchesZip =
-      zipPartials.length === 0 || providerZips.some((zip) => zipPartials.some((partial) => zip.includes(partial)));
+      // Extract 3-5 digit zip partials from the search term
+      const zipPartials = Array.from(q.matchAll(/\b(\d{3,5})\b/g), (m) => m[1]);
 
-    // Text tokens (exclude numeric zip tokens)
-    const textOnly = q
-      .replace(/\b\d{3,5}\b/g, " ")
-      .replace(/\s+/g, " ")
-      .trim();
-    const tokens = textOnly ? textOnly.split(" ") : [];
-    const haystacks = [provider.name.toLowerCase(), provider.location.toLowerCase(), provider.specialty.toLowerCase()];
-    const matchesText = tokens.length === 0 || tokens.every((token) => haystacks.some((h) => h.includes(token)));
-    return specialtyMatch && matchesText && matchesZip;
-  });
+      // Extract provider ZIP codes (5 digits)
+      const providerZips = Array.from(provider.location.matchAll(/\b(\d{5})\b/g), (m) => m[1]);
+      const matchesZip =
+        zipPartials.length === 0 || providerZips.some((zip) => zipPartials.some((partial) => zip.includes(partial)));
+
+      // Text tokens (exclude numeric zip tokens)
+      const textOnly = q
+        .replace(/\b\d{3,5}\b/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+      const tokens = textOnly ? textOnly.split(" ") : [];
+      const haystacks = [provider.name.toLowerCase(), provider.location.toLowerCase(), provider.specialty.toLowerCase()];
+      const matchesText = tokens.length === 0 || tokens.every((token) => haystacks.some((h) => h.includes(token)));
+      return specialtyMatch && matchesText && matchesZip;
+    });
+
+    // If we have user coordinates, calculate distances and sort
+    if (searchResults.userCoords) {
+      result = result
+        .map(provider => {
+          if (provider.latitude && provider.longitude) {
+            const distance = calculateDistance(
+              searchResults.userCoords!.lat,
+              searchResults.userCoords!.lng,
+              provider.latitude,
+              provider.longitude
+            );
+            return { ...provider, distance };
+          }
+          return { ...provider, distance: Infinity };
+        })
+        .sort((a, b) => (a.distance ?? Infinity) - (b.distance ?? Infinity))
+        .slice(0, 5); // Return top 5 closest
+    }
+
+    return result;
+  }, [providers, selectedSpecialty, searchTerm, searchResults]);
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -4711,6 +4775,16 @@ const Providers = () => {
             </div>
           </div>
 
+          {/* Location search indicator */}
+          {searchResults.userCoords && (
+            <div className="mb-6 p-4 bg-primary/10 border border-primary/20 rounded-lg text-center">
+              <p className="text-sm font-medium flex items-center justify-center gap-2">
+                <Navigation2 size={16} className="text-primary" />
+                Showing {filteredProviders.length} closest {selectedSpecialty !== "All Specialties" ? selectedSpecialty : ""} providers near <strong>{searchResults.userCoords.city}</strong>
+              </p>
+            </div>
+          )}
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProviders
               .filter((p) => !p.isStudyFacility)
@@ -4723,9 +4797,16 @@ const Providers = () => {
                     <div className="flex items-start justify-between">
                       <div>
                         <CardTitle className="text-xl mb-2">{provider.name}</CardTitle>
-                        <Badge className="bg-gradient-to-r from-primary to-secondary text-primary-foreground border-0">
-                          {provider.specialty}
-                        </Badge>
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <Badge className="bg-gradient-to-r from-primary to-secondary text-primary-foreground border-0">
+                            {provider.specialty}
+                          </Badge>
+                          {searchResults.userCoords && 'distance' in provider && typeof provider.distance === 'number' && provider.distance !== Infinity && (
+                            <Badge variant="outline" className="text-xs">
+                              ~{Math.round(provider.distance)} miles
+                            </Badge>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </CardHeader>
