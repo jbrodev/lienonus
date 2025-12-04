@@ -7,9 +7,11 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
-import { Loader2, Trash2, ArrowUpDown, RotateCcw, ChevronDown, ChevronUp } from "lucide-react";
+import { Loader2, Trash2, ArrowUpDown, RotateCcw } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Label } from "@/components/ui/label";
 import Navigation from "@/components/Navigation";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+
 
 interface AnalyticsData {
   id: string;
@@ -32,7 +34,7 @@ const AdminDashboard = () => {
   const [specialtyFilter, setSpecialtyFilter] = useState("all");
   const [sortField, setSortField] = useState<keyof AnalyticsData>("created_at");
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc");
-  const [deletedSectionOpen, setDeletedSectionOpen] = useState(false);
+  const [showDeleted, setShowDeleted] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -103,7 +105,7 @@ const AdminDashboard = () => {
   };
 
   useEffect(() => {
-    let filtered = [...analytics];
+    let filtered = showDeleted ? [...deletedAnalytics] : [...analytics];
 
     // Apply search filter
     if (searchTerm) {
@@ -125,11 +127,12 @@ const AdminDashboard = () => {
     }
 
     // Apply sorting
+    const sortFieldToUse = showDeleted && sortField === "created_at" ? "deleted_at" : sortField;
     filtered.sort((a, b) => {
-      const aValue = a[sortField];
-      const bValue = b[sortField];
+      const aValue = a[sortFieldToUse as keyof AnalyticsData];
+      const bValue = b[sortFieldToUse as keyof AnalyticsData];
       
-      if (sortField === "created_at") {
+      if (sortFieldToUse === "created_at" || sortFieldToUse === "deleted_at") {
         const aTime = new Date(aValue as string).getTime();
         const bTime = new Date(bValue as string).getTime();
         return sortDirection === "asc" ? aTime - bTime : bTime - aTime;
@@ -149,7 +152,7 @@ const AdminDashboard = () => {
     });
 
     setFilteredAnalytics(filtered);
-  }, [analytics, searchTerm, eventTypeFilter, specialtyFilter, sortField, sortDirection]);
+  }, [analytics, deletedAnalytics, showDeleted, searchTerm, eventTypeFilter, specialtyFilter, sortField, sortDirection]);
 
   const formatEventType = (eventType: string) => {
     return eventType
@@ -326,6 +329,19 @@ const AdminDashboard = () => {
                   ))}
                 </SelectContent>
               </Select>
+              <div className="flex items-center space-x-2">
+                <Checkbox 
+                  id="show-deleted" 
+                  checked={showDeleted}
+                  onCheckedChange={(checked) => setShowDeleted(checked === true)}
+                />
+                <Label 
+                  htmlFor="show-deleted" 
+                  className="text-sm font-medium cursor-pointer select-none"
+                >
+                  Show deleted ({deletedAnalytics.length})
+                </Label>
+              </div>
               </div>
               <Button onClick={handleExport} variant="outline">
                 Export to Excel
@@ -394,82 +410,36 @@ const AdminDashboard = () => {
                           onClick={() => handleSort("created_at")}
                           className="h-auto p-0 hover:bg-transparent"
                         >
-                          Date & Time
+                          {showDeleted ? "Deleted At" : "Date & Time"}
                           <ArrowUpDown className="ml-2 h-4 w-4" />
                         </Button>
                       </TableHead>
+                      {showDeleted && <TableHead>Days Left</TableHead>}
                       <TableHead className="text-right">Actions</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
                     {filteredAnalytics.map((item) => (
-                      <TableRow key={item.id}>
+                      <TableRow key={item.id} className={showDeleted ? "bg-muted/30" : ""}>
                         <TableCell className="font-medium">{item.provider_id}</TableCell>
                         <TableCell>{item.provider_name}</TableCell>
                         <TableCell>{item.specialty}</TableCell>
                         <TableCell>{formatEventType(item.event_type)}</TableCell>
                         <TableCell>
-                          {new Date(item.created_at).toLocaleString()}
+                          {showDeleted && item.deleted_at
+                            ? new Date(item.deleted_at).toLocaleString()
+                            : new Date(item.created_at).toLocaleString()}
                         </TableCell>
+                        {showDeleted && (
+                          <TableCell>
+                            <span className="text-destructive font-medium">
+                              {item.deleted_at && getDaysRemaining(item.deleted_at)}d
+                            </span>
+                          </TableCell>
+                        )}
                         <TableCell className="text-right">
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => handleSoftDelete(item.id)}
-                          >
-                            <Trash2 className="h-4 w-4" />
-                          </Button>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </div>
-            )}
-
-            {/* Deleted Items Section */}
-            {deletedAnalytics.length > 0 && (
-              <Collapsible open={deletedSectionOpen} onOpenChange={setDeletedSectionOpen}>
-                <CollapsibleTrigger asChild>
-                  <Button variant="outline" className="w-full justify-between mt-6">
-                    <span>Deleted Items ({deletedAnalytics.length}) - Auto-deleted after 7 days</span>
-                    {deletedSectionOpen ? (
-                      <ChevronUp className="h-4 w-4" />
-                    ) : (
-                      <ChevronDown className="h-4 w-4" />
-                    )}
-                  </Button>
-                </CollapsibleTrigger>
-                <CollapsibleContent className="mt-4">
-                  <div className="overflow-x-auto border rounded-lg">
-                    <Table>
-                      <TableHeader>
-                        <TableRow>
-                          <TableHead>Provider ID</TableHead>
-                          <TableHead>Provider Name</TableHead>
-                          <TableHead>Specialty</TableHead>
-                          <TableHead>Event Type</TableHead>
-                          <TableHead>Deleted At</TableHead>
-                          <TableHead>Days Remaining</TableHead>
-                          <TableHead className="text-right">Actions</TableHead>
-                        </TableRow>
-                      </TableHeader>
-                      <TableBody>
-                        {deletedAnalytics.map((item) => (
-                          <TableRow key={item.id} className="bg-muted/50">
-                            <TableCell className="font-medium">{item.provider_id}</TableCell>
-                            <TableCell>{item.provider_name}</TableCell>
-                            <TableCell>{item.specialty}</TableCell>
-                            <TableCell>{formatEventType(item.event_type)}</TableCell>
-                            <TableCell>
-                              {item.deleted_at && new Date(item.deleted_at).toLocaleString()}
-                            </TableCell>
-                            <TableCell>
-                              <span className="text-destructive font-medium">
-                                {item.deleted_at && getDaysRemaining(item.deleted_at)} days
-                              </span>
-                            </TableCell>
-                            <TableCell className="text-right space-x-2">
+                          {showDeleted ? (
+                            <div className="flex justify-end gap-1">
                               <Button
                                 variant="ghost"
                                 size="sm"
@@ -487,15 +457,24 @@ const AdminDashboard = () => {
                               >
                                 <Trash2 className="h-4 w-4" />
                               </Button>
-                            </TableCell>
-                          </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
-                  </div>
-                </CollapsibleContent>
-              </Collapsible>
+                            </div>
+                          ) : (
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              onClick={() => handleSoftDelete(item.id)}
+                            >
+                              <Trash2 className="h-4 w-4" />
+                            </Button>
+                          )}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
             )}
+
           </CardContent>
         </Card>
       </div>
