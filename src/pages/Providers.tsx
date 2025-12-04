@@ -4685,7 +4685,20 @@ const Providers = () => {
     let result = providers.filter((provider) => {
       const specialtyMatch = selectedSpecialty === "All Specialties" || provider.specialty === selectedSpecialty;
       
-      // If we have a location match, don't filter by text - we'll sort by distance instead
+      // If we have an exact location match, only show providers in that exact city/zip
+      if (searchResults.userCoords && searchResults.isExactMatch) {
+        const searchedCity = searchResults.userCoords.city.toLowerCase();
+        const searchedZip = searchTerm.trim();
+        const providerLocation = provider.location.toLowerCase();
+        
+        // Check if provider is in the exact city or has the exact zip
+        const isInCity = providerLocation.includes(searchedCity);
+        const isInZip = /^\d{5}$/.test(searchedZip) && providerLocation.includes(searchedZip);
+        
+        return specialtyMatch && (isInCity || isInZip);
+      }
+      
+      // If we have a fuzzy location match, don't filter by text - we'll sort by distance instead
       if (searchResults.userCoords) {
         return specialtyMatch;
       }
