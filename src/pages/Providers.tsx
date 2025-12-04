@@ -2777,7 +2777,7 @@ const providers = [
   // ORTHOPEDICS
   {
     id: 215,
-    name: "Unicare Surgery Center",
+    name: "Unicare Surgery Center (Extremities)",
     specialty: "Orthopedics",
     location: "1741 W. Romneya Dr., Suite B, Anaheim, CA 92801",
     phone: "(714) 332-5000",
@@ -2802,7 +2802,7 @@ const providers = [
   },
   {
     id: 217,
-    name: "Advanced Spine Institute",
+    name: "Advanced Spine Institute (Extremities)",
     specialty: "Orthopedics",
     location: "131 E. Huntington Dr., Arcadia, CA 91006",
     phone: "(818) 501-2001",
@@ -2814,7 +2814,7 @@ const providers = [
   },
   {
     id: 218,
-    name: "Silver Orthopedic Center",
+    name: "Silver Orthopedic Center (Extremities/Spine)",
     specialty: "Orthopedics",
     location: "16030 Ventura Blvd. Suite 150, Encino, California 91436",
     phone: "(818) 501-2001",
@@ -2827,7 +2827,7 @@ const providers = [
   },
   {
     id: 219,
-    name: "DEE Sports Orthopedics",
+    name: "DEE Sports Orthopedics (Extremities)",
     specialty: "Orthopedics",
     location: "4477 W 118th St., Suite 401, Hawthorne, CA 90250",
     phone: "(562) 430-3561",
@@ -2839,7 +2839,7 @@ const providers = [
   },
   {
     id: 220,
-    name: "DEE Sports Orthopedics",
+    name: "DEE Sports Orthopedics (Extremities)",
     specialty: "Orthopedics",
     location: "7146 Edinger Ave., Huntington Beach, CA 92647",
     phone: "(562) 430-3561",
@@ -2852,7 +2852,7 @@ const providers = [
   },
   {
     id: 221,
-    name: "DEE Sports Orthopedics",
+    name: "DEE Sports Orthopedics (Extremities)",
     specialty: "Orthopedics",
     location: "1127 Wilshire Blvd., Suite 1000, Los Angeles, CA 90017",
     phone: "(562) 430-3561",
@@ -2864,7 +2864,7 @@ const providers = [
   },
   {
     id: 222,
-    name: "Center For Orthopedics and Rehabilitation",
+    name: "Center For Orthopedics and Rehabilitation (Extremities)",
     specialty: "Orthopedics",
     location: "1405 W Rancho Vista Blvd., Palmdale, CA 93551",
     phone: "(661) 274-8725",
@@ -2877,7 +2877,7 @@ const providers = [
   },
   {
     id: 223,
-    name: "Silver Orthopedic Center",
+    name: "Silver Orthopedic Center (Spine)",
     specialty: "Orthopedics",
     location: "15035 E. 14th Street, San Leandro, CA 94578",
     phone: "(818) 501-2001",
