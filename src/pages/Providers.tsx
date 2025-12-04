@@ -4682,30 +4682,57 @@ const Providers = () => {
 
   // Filter and sort providers based on search and location
   const filteredProviders = useMemo(() => {
-    let result = providers.filter((provider) => {
-      const specialtyMatch = selectedSpecialty === "All Specialties" || provider.specialty === selectedSpecialty;
-      
-      // If we have an exact location match, only show providers in that exact city/zip
-      if (searchResults.userCoords && searchResults.isExactMatch) {
+    const specialtyFiltered = providers.filter((provider) => {
+      return selectedSpecialty === "All Specialties" || provider.specialty === selectedSpecialty;
+    });
+
+    // If we have user coordinates (location search)
+    if (searchResults.userCoords) {
+      // Calculate distances for all specialty-matched providers
+      const withDistances = specialtyFiltered
+        .map(provider => {
+          if (provider.latitude && provider.longitude) {
+            const distance = calculateDistance(
+              searchResults.userCoords!.lat,
+              searchResults.userCoords!.lng,
+              provider.latitude,
+              provider.longitude
+            );
+            return { ...provider, distance };
+          }
+          return { ...provider, distance: Infinity };
+        })
+        .sort((a, b) => (a.distance ?? Infinity) - (b.distance ?? Infinity));
+
+      // For exact matches, try to filter to only providers in that city/zip
+      if (searchResults.isExactMatch) {
         const searchedCity = searchResults.userCoords.city.toLowerCase();
         const searchedZip = searchTerm.trim();
-        const providerLocation = provider.location.toLowerCase();
         
-        // Check if provider is in the exact city or has the exact zip
-        const isInCity = providerLocation.includes(searchedCity);
-        const isInZip = /^\d{5}$/.test(searchedZip) && providerLocation.includes(searchedZip);
-        
-        return specialtyMatch && (isInCity || isInZip);
-      }
-      
-      // If we have a fuzzy location match, don't filter by text - we'll sort by distance instead
-      if (searchResults.userCoords) {
-        return specialtyMatch;
-      }
-      
-      const q = searchTerm.trim().toLowerCase();
-      if (!q) return specialtyMatch;
+        const exactMatches = withDistances.filter(provider => {
+          const providerLocation = provider.location.toLowerCase();
+          const isInCity = providerLocation.includes(searchedCity);
+          const isInZip = /^\d{5}$/.test(searchedZip) && providerLocation.includes(searchedZip);
+          return isInCity || isInZip;
+        });
 
+        // If we found providers in the exact location, return them all
+        // Otherwise, fall back to showing 5 closest providers
+        if (exactMatches.length > 0) {
+          return exactMatches;
+        }
+      }
+
+      // For fuzzy matches OR exact matches with no providers in that location,
+      // return the 5 closest providers
+      return withDistances.slice(0, 5);
+    }
+
+    // No location search - filter by text
+    const q = searchTerm.trim().toLowerCase();
+    if (!q) return specialtyFiltered;
+
+    return specialtyFiltered.filter((provider) => {
       // Extract 3-5 digit zip partials from the search term
       const zipPartials = Array.from(q.matchAll(/\b(\d{3,5})\b/g), (m) => m[1]);
 
@@ -4722,33 +4749,8 @@ const Providers = () => {
       const tokens = textOnly ? textOnly.split(" ") : [];
       const haystacks = [provider.name.toLowerCase(), provider.location.toLowerCase(), provider.specialty.toLowerCase()];
       const matchesText = tokens.length === 0 || tokens.every((token) => haystacks.some((h) => h.includes(token)));
-      return specialtyMatch && matchesText && matchesZip;
+      return matchesText && matchesZip;
     });
-
-    // If we have user coordinates, calculate distances and sort
-    if (searchResults.userCoords) {
-      result = result
-        .map(provider => {
-          if (provider.latitude && provider.longitude) {
-            const distance = calculateDistance(
-              searchResults.userCoords!.lat,
-              searchResults.userCoords!.lng,
-              provider.latitude,
-              provider.longitude
-            );
-            return { ...provider, distance };
-          }
-          return { ...provider, distance: Infinity };
-        })
-        .sort((a, b) => (a.distance ?? Infinity) - (b.distance ?? Infinity));
-      
-      // Only limit to 5 closest for fuzzy matches, show all for exact matches
-      if (!searchResults.isExactMatch) {
-        result = result.slice(0, 5);
-      }
-    }
-
-    return result;
   }, [providers, selectedSpecialty, searchTerm, searchResults]);
 
   return (
