@@ -2897,6 +2897,8 @@ const providers = [
     email: "schedule@unicaresurgery.com",
     website: "https://www.unicaresurgery.com",
     acceptsLiens: true,
+    latitude: 33.850278,
+    longitude: -117.924722,
   },
   {
     id: 225,
@@ -2907,6 +2909,8 @@ const providers = [
     email: "schedule@unicaresurgery.com",
     website: "https://www.unicaresurgery.com",
     acceptsLiens: true,
+    latitude: 33.850556,
+    longitude: -117.924167,
   },
   {
     id: 226,
@@ -2917,6 +2921,8 @@ const providers = [
     email: "chinsekim@gmail.com",
     website: "https://www.anaheimsportsmedicine.com",
     acceptsLiens: true,
+    latitude: 33.849167,
+    longitude: -117.922222,
   },
   {
     id: 227,
@@ -2927,6 +2933,8 @@ const providers = [
     email: "referrals@casportsandspine.com",
     website: "https://casportsandspine.com",
     acceptsLiens: true,
+    latitude: 33.868056,
+    longitude: -117.911944,
   },
   {
     id: 228,
@@ -2937,16 +2945,20 @@ const providers = [
     email: "mj@revivepain.com",
     website: "https://revivepain.com",
     acceptsLiens: true,
+    latitude: 33.838056,
+    longitude: -117.878056,
   },
   {
     id: 229,
     name: "Synergex Med",
     specialty: "Pain Management",
-    location: "710 S. Brookhurts St., Suite D, Anaheim, CA 92804",
+    location: "710 S. Brookhurst St., Suite D, Anaheim, CA 92804",
     phone: "(562) 414-4452",
     email: "admin@synergexmed.com",
     website: "https://www.synergexmed.com",
     acceptsLiens: true,
+    latitude: 33.824167,
+    longitude: -117.959167,
   },
   {
     id: 230,
@@ -2957,6 +2969,8 @@ const providers = [
     email: "pi@usapaincare.com",
     website: "https://www.ifixspinemd.com",
     acceptsLiens: true,
+    latitude: 35.375278,
+    longitude: -119.019444,
   },
   {
     id: 231,
@@ -2967,6 +2981,8 @@ const providers = [
     email: "Aaronincpc@gmail.com",
     website: "https://www.centerpaincontrol.com",
     acceptsLiens: true,
+    latitude: 35.332222,
+    longitude: -119.069167,
   },
   {
     id: 232,
@@ -2977,6 +2993,20 @@ const providers = [
     email: "admin@lapainassociates.com",
     website: "https://lapainassociates.com",
     acceptsLiens: true,
+    latitude: 34.067778,
+    longitude: -118.376667,
+  },
+  {
+    id: 308,
+    name: "Dr. Daniel Dermendjian, MD",
+    specialty: "Pain Management",
+    location: "435 N Roxbury Dr Suite 315, Beverly Hills, CA 90210",
+    phone: "(818) 206-2181",
+    email: "admin@lapainassociates.com",
+    website: "https://lapainassociates.com",
+    acceptsLiens: true,
+    latitude: 34.069167,
+    longitude: -118.391389,
   },
   {
     id: 233,
@@ -2987,6 +3017,8 @@ const providers = [
     email: "pi@usapaincare.com",
     website: "https://www.ifixspinemd.com",
     acceptsLiens: true,
+    latitude: 33.864167,
+    longitude: -118.103056,
   },
   {
     id: 234,
@@ -2997,6 +3029,8 @@ const providers = [
     email: "referrals@casportsandspine.com",
     website: "https://casportsandspine.com",
     acceptsLiens: true,
+    latitude: 34.050278,
+    longitude: -117.312778,
   },
   {
     id: 235,
@@ -3007,6 +3041,8 @@ const providers = [
     email: "pi@usapaincare.com",
     website: "https://www.ifixspinemd.com",
     acceptsLiens: true,
+    latitude: 33.845833,
+    longitude: -117.565278,
   },
   {
     id: 236,
@@ -3017,6 +3053,8 @@ const providers = [
     email: "pi@usapaincare.com",
     website: "https://www.ifixspinemd.com",
     acceptsLiens: true,
+    latitude: 33.845833,
+    longitude: -117.565278,
   },
   {
     id: 237,
@@ -3027,6 +3065,8 @@ const providers = [
     email: "referrals@casportsandspine.com",
     website: "https://casportsandspine.com",
     acceptsLiens: true,
+    latitude: 33.857222,
+    longitude: -117.568056,
   },
   {
     id: 238,
@@ -3037,6 +3077,8 @@ const providers = [
     email: "referrals@casportsandspine.com",
     website: "https://casportsandspine.com",
     acceptsLiens: true,
+    latitude: 34.013056,
+    longitude: -117.687778,
   },
   {
     id: 239,
@@ -3047,6 +3089,20 @@ const providers = [
     email: "Aaronincpc@gmail.com",
     website: "https://www.centerpaincontrol.com",
     acceptsLiens: true,
+    latitude: 34.009167,
+    longitude: -117.683056,
+  },
+  {
+    id: 240,
+    name: "Southern California Injury Treatment Center",
+    specialty: "Pain Management",
+    location: "15857 Pomona Rincon Rd., Chino Hills, CA 91709",
+    phone: "(844) 787-3286",
+    email: "injurytreatmentcenter909@gmail.com",
+    website: "",
+    acceptsLiens: true,
+    latitude: 33.966389,
+    longitude: -117.696389,
   },
   {
     id: 241,
@@ -3057,6 +3113,8 @@ const providers = [
     email: "referrals@casportsandspine.com",
     website: "https://casportsandspine.com",
     acceptsLiens: true,
+    latitude: 34.022222,
+    longitude: -118.396667,
   },
   {
     id: 242,
@@ -3067,6 +3125,8 @@ const providers = [
     email: "referrals@casportsandspine.com",
     website: "https://casportsandspine.com",
     acceptsLiens: true,
+    latitude: 33.919444,
+    longitude: -118.138056,
   },
   {
     id: 243,
@@ -3077,16 +3137,20 @@ const providers = [
     email: "admin@synergexmed.com",
     website: "https://www.synergexmed.com",
     acceptsLiens: true,
+    latitude: 33.919444,
+    longitude: -118.138056,
   },
   {
     id: 244,
     name: "Synergex Med (Surgery Center)",
     specialty: "Pain Management",
-    location: "16466 Bernardo Center Drive, Suite 177, Downey, CA 92128",
+    location: "16466 Bernardo Center Drive, Suite 177, San Diego, CA 92128",
     phone: "(562) 414-4452",
     email: "admin@synergexmed.com",
     website: "https://www.synergexmed.com",
     acceptsLiens: true,
+    latitude: 33.003056,
+    longitude: -117.076111,
   },
   {
     id: 245,
@@ -3097,6 +3161,8 @@ const providers = [
     email: "admin@synergexmed.com",
     website: "https://www.synergexmed.com",
     acceptsLiens: true,
+    latitude: 34.068056,
+    longitude: -118.018056,
   },
   {
     id: 246,
@@ -3107,6 +3173,8 @@ const providers = [
     email: "admin@synergexmed.com",
     website: "https://www.synergexmed.com",
     acceptsLiens: true,
+    latitude: 38.407222,
+    longitude: -121.392222,
   },
   {
     id: 247,
@@ -3117,6 +3185,8 @@ const providers = [
     email: "referrals@casportsandspine.com",
     website: "https://casportsandspine.com",
     acceptsLiens: true,
+    latitude: 34.160278,
+    longitude: -118.499444,
   },
   {
     id: 248,
@@ -3127,6 +3197,8 @@ const providers = [
     email: "Aaronincpc@gmail.com",
     website: "https://www.centerpaincontrol.com",
     acceptsLiens: true,
+    latitude: 34.160556,
+    longitude: -118.503889,
   },
   {
     id: 249,
@@ -3137,6 +3209,8 @@ const providers = [
     email: "admin@lapainassociates.com",
     website: "https://lapainassociates.com",
     acceptsLiens: true,
+    latitude: 34.092222,
+    longitude: -117.434167,
   },
   {
     id: 250,
@@ -3147,6 +3221,8 @@ const providers = [
     email: "admin@synergexmed.com",
     website: "https://www.synergexmed.com",
     acceptsLiens: true,
+    latitude: 37.548889,
+    longitude: -121.981111,
   },
   {
     id: 251,
@@ -3157,16 +3233,20 @@ const providers = [
     email: "admin@synergexmed.com",
     website: "https://www.synergexmed.com",
     acceptsLiens: true,
+    latitude: 37.554167,
+    longitude: -121.985556,
   },
   {
     id: 252,
     name: "Center for Pain Control Medical Group",
     specialty: "Pain Management",
-    location: "7125 N. Chestnut Ave., Suite 104, Fresno, CA 94109",
+    location: "7125 N. Chestnut Ave., Suite 104, Fresno, CA 93720",
     phone: "(818) 923-5440",
     email: "Aaronincpc@gmail.com",
     website: "https://www.centerpaincontrol.com",
     acceptsLiens: true,
+    latitude: 36.854167,
+    longitude: -119.792778,
   },
   {
     id: 253,
@@ -3177,6 +3257,8 @@ const providers = [
     email: "admin@lapainassociates.com",
     website: "https://lapainassociates.com",
     acceptsLiens: true,
+    latitude: 34.142778,
+    longitude: -118.255278,
   },
   {
     id: 254,
@@ -3187,6 +3269,8 @@ const providers = [
     email: "mj@revivepain.com",
     website: "https://revivepain.com",
     acceptsLiens: true,
+    latitude: 34.004167,
+    longitude: -117.951944,
   },
   {
     id: 255,
@@ -3197,6 +3281,8 @@ const providers = [
     email: "referrals@casportsandspine.com",
     website: "https://casportsandspine.com",
     acceptsLiens: true,
+    latitude: 33.927056,
+    longitude: -118.353889,
   },
   {
     id: 256,
@@ -3207,6 +3293,8 @@ const providers = [
     email: "pi@usapaincare.com",
     website: "https://www.ifixspinemd.com",
     acceptsLiens: true,
+    latitude: 34.417222,
+    longitude: -117.298056,
   },
   {
     id: 257,
@@ -3217,6 +3305,8 @@ const providers = [
     email: "admin@synergexmed.com",
     website: "https://www.synergexmed.com",
     acceptsLiens: true,
+    latitude: 33.728056,
+    longitude: -117.993889,
   },
   {
     id: 258,
@@ -3227,6 +3317,8 @@ const providers = [
     email: "admin@synergexmed.com",
     website: "https://www.synergexmed.com",
     acceptsLiens: true,
+    latitude: 33.860278,
+    longitude: -118.153056,
   },
   {
     id: 259,
@@ -3237,6 +3329,8 @@ const providers = [
     email: "pi@usapaincare.com",
     website: "https://www.ifixspinemd.com",
     acceptsLiens: true,
+    latitude: 33.682778,
+    longitude: -117.363889,
   },
   {
     id: 260,
@@ -3247,6 +3341,8 @@ const providers = [
     email: "darlene.skyespine@gmail.com",
     website: "N/A",
     acceptsLiens: true,
+    latitude: 34.682778,
+    longitude: -118.151389,
   },
   {
     id: 261,
@@ -3257,6 +3353,8 @@ const providers = [
     email: "referrals@casportsandspine.com",
     website: "https://casportsandspine.com",
     acceptsLiens: true,
+    latitude: 34.022222,
+    longitude: -118.396667,
   },
   {
     id: 262,
@@ -3267,6 +3365,8 @@ const providers = [
     email: "referrals@casportsandspine.com",
     website: "https://casportsandspine.com",
     acceptsLiens: true,
+    latitude: 34.061667,
+    longitude: -118.292778,
   },
   {
     id: 263,
@@ -3277,6 +3377,8 @@ const providers = [
     email: "Aaronincpc@gmail.com",
     website: "https://www.centerpaincontrol.com",
     acceptsLiens: true,
+    latitude: 34.048056,
+    longitude: -118.331944,
   },
   {
     id: 264,
@@ -3287,6 +3389,8 @@ const providers = [
     email: "dl@remedypainsolutions.com",
     website: "https://remedypainsolutions.com",
     acceptsLiens: true,
+    latitude: 33.928056,
+    longitude: -118.189167,
   },
   {
     id: 265,
@@ -3297,6 +3401,8 @@ const providers = [
     email: "dl@remedypainsolutions.com",
     website: "https://remedypainsolutions.com",
     acceptsLiens: true,
+    latitude: 33.900556,
+    longitude: -118.398056,
   },
   {
     id: 266,
@@ -3307,6 +3413,8 @@ const providers = [
     email: "dl@remedypainsolutions.com",
     website: "https://remedypainsolutions.com",
     acceptsLiens: true,
+    latitude: 33.980556,
+    longitude: -118.447778,
   },
   {
     id: 267,
@@ -3317,6 +3425,8 @@ const providers = [
     email: "referrals@casportsandspine.com",
     website: "https://casportsandspine.com",
     acceptsLiens: true,
+    latitude: 37.442222,
+    longitude: -121.902778,
   },
   {
     id: 268,
@@ -3327,6 +3437,8 @@ const providers = [
     email: "pi@usapaincare.com",
     website: "https://www.ifixspinemd.com",
     acceptsLiens: true,
+    latitude: 37.695278,
+    longitude: -121.001389,
   },
   {
     id: 269,
@@ -3337,6 +3449,8 @@ const providers = [
     email: "Aaronincpc@gmail.com",
     website: "https://www.centerpaincontrol.com",
     acceptsLiens: true,
+    latitude: 37.649167,
+    longitude: -120.995278,
   },
   {
     id: 270,
@@ -3347,6 +3461,8 @@ const providers = [
     email: "referrals@casportsandspine.com",
     website: "https://casportsandspine.com",
     acceptsLiens: true,
+    latitude: 33.552222,
+    longitude: -117.208056,
   },
   {
     id: 271,
@@ -3357,6 +3473,8 @@ const providers = [
     email: "mj@revivepain.com",
     website: "https://revivepain.com",
     acceptsLiens: true,
+    latitude: 33.618056,
+    longitude: -117.931111,
   },
   {
     id: 272,
@@ -3367,6 +3485,8 @@ const providers = [
     email: "mj@revivepain.com",
     website: "https://revivepain.com",
     acceptsLiens: true,
+    latitude: 34.233611,
+    longitude: -118.562500,
   },
   {
     id: 273,
@@ -3377,6 +3497,8 @@ const providers = [
     email: "Aaronincpc@gmail.com",
     website: "https://www.centerpaincontrol.com",
     acceptsLiens: true,
+    latitude: 37.804167,
+    longitude: -122.269167,
   },
   {
     id: 274,
@@ -3387,6 +3509,8 @@ const providers = [
     email: "admin@synergexmed.com",
     website: "https://www.synergexmed.com",
     acceptsLiens: true,
+    latitude: 37.811111,
+    longitude: -122.269444,
   },
   {
     id: 275,
@@ -3397,6 +3521,8 @@ const providers = [
     email: "admin@synergexmed.com",
     website: "https://www.synergexmed.com",
     acceptsLiens: true,
+    latitude: 33.191944,
+    longitude: -117.346944,
   },
   {
     id: 276,
@@ -3407,6 +3533,8 @@ const providers = [
     email: "admin@synergexmed.com",
     website: "https://www.synergexmed.com",
     acceptsLiens: true,
+    latitude: 34.128611,
+    longitude: -118.147222,
   },
   {
     id: 277,
@@ -3417,6 +3545,8 @@ const providers = [
     email: "admin@synergexmed.com",
     website: "https://www.synergexmed.com",
     acceptsLiens: true,
+    latitude: 34.147222,
+    longitude: -118.150556,
   },
   {
     id: 278,
@@ -3427,6 +3557,8 @@ const providers = [
     email: "mj@revivepain.com",
     website: "https://revivepain.com",
     acceptsLiens: true,
+    latitude: 33.900556,
+    longitude: -118.163889,
   },
   {
     id: 279,
@@ -3437,6 +3569,8 @@ const providers = [
     email: "pi@usapaincare.com",
     website: "https://www.ifixspinemd.com",
     acceptsLiens: true,
+    latitude: 33.715278,
+    longitude: -116.373889,
   },
   {
     id: 280,
@@ -3447,6 +3581,8 @@ const providers = [
     email: "pi@usapaincare.com",
     website: "https://www.ifixspinemd.com",
     acceptsLiens: true,
+    latitude: 33.640556,
+    longitude: -117.604167,
   },
   {
     id: 281,
@@ -3457,16 +3593,20 @@ const providers = [
     email: "referrals@casportsandspine.com",
     website: "https://casportsandspine.com",
     acceptsLiens: true,
+    latitude: 33.979167,
+    longitude: -117.380556,
   },
   {
     id: 282,
     name: "Synergex Med",
     specialty: "Pain Management",
-    location: "4234 Riverwalk Parkway, Suite 110, Riverside, CA 92595",
+    location: "4234 Riverwalk Parkway, Suite 110, Riverside, CA 92505",
     phone: "(562) 414-4452",
     email: "admin@synergexmed.com",
     website: "https://www.synergexmed.com",
     acceptsLiens: true,
+    latitude: 33.907222,
+    longitude: -117.492778,
   },
   {
     id: 283,
@@ -3477,6 +3617,8 @@ const providers = [
     email: "mj@revivepain.com",
     website: "https://revivepain.com",
     acceptsLiens: true,
+    latitude: 33.971111,
+    longitude: -117.348056,
   },
   {
     id: 284,
@@ -3487,6 +3629,8 @@ const providers = [
     email: "pi@usapaincare.com",
     website: "https://www.ifixspinemd.com",
     acceptsLiens: true,
+    latitude: 38.546389,
+    longitude: -121.244444,
   },
   {
     id: 285,
@@ -3497,6 +3641,8 @@ const providers = [
     email: "referrals@casportsandspine.com",
     website: "https://casportsandspine.com",
     acceptsLiens: true,
+    latitude: 34.135278,
+    longitude: -117.258611,
   },
   {
     id: 286,
@@ -3507,16 +3653,20 @@ const providers = [
     email: "admin@synergexmed.com",
     website: "https://www.synergexmed.com",
     acceptsLiens: true,
+    latitude: 32.922222,
+    longitude: -117.126111,
   },
   {
     id: 287,
     name: "Synergex Med (Surgery Center)",
     specialty: "Pain Management",
-    location: "San Diego Surgery Center",
+    location: "San Diego Surgery Center, San Diego, CA",
     phone: "(562) 414-4452",
     email: "admin@synergexmed.com",
     website: "https://www.synergexmed.com",
     acceptsLiens: true,
+    latitude: 32.834722,
+    longitude: -117.127778,
   },
   {
     id: 288,
@@ -3527,6 +3677,8 @@ const providers = [
     email: "pi@usapaincare.com",
     website: "https://www.ifixspinemd.com",
     acceptsLiens: true,
+    latitude: 32.767778,
+    longitude: -117.141389,
   },
   {
     id: 289,
@@ -3537,6 +3689,8 @@ const providers = [
     email: "pi@usapaincare.com",
     website: "https://www.ifixspinemd.com",
     acceptsLiens: true,
+    latitude: 33.187222,
+    longitude: -117.307778,
   },
   {
     id: 290,
@@ -3547,6 +3701,8 @@ const providers = [
     email: "pi@usapaincare.com",
     website: "https://www.ifixspinemd.com",
     acceptsLiens: true,
+    latitude: 33.187222,
+    longitude: -117.307778,
   },
   {
     id: 291,
@@ -3557,6 +3713,8 @@ const providers = [
     email: "pi@usapaincare.com",
     website: "https://www.ifixspinemd.com",
     acceptsLiens: true,
+    latitude: 33.781111,
+    longitude: -116.965556,
   },
   {
     id: 292,
@@ -3567,6 +3725,8 @@ const providers = [
     email: "alicia@thespinemd.com",
     website: "https://www.silverorthopedics.com",
     acceptsLiens: true,
+    latitude: 37.705278,
+    longitude: -122.144167,
   },
   {
     id: 293,
@@ -3577,6 +3737,8 @@ const providers = [
     email: "Aaronincpc@gmail.com",
     website: "https://www.centerpaincontrol.com",
     acceptsLiens: true,
+    latitude: 37.793889,
+    longitude: -122.423056,
   },
   {
     id: 294,
@@ -3587,6 +3749,8 @@ const providers = [
     email: "pi@usapaincare.com",
     website: "https://www.ifixspinemd.com",
     acceptsLiens: true,
+    latitude: 37.350278,
+    longitude: -121.845833,
   },
   {
     id: 295,
@@ -3597,6 +3761,8 @@ const providers = [
     email: "admin@synergexmed.com",
     website: "https://www.synergexmed.com",
     acceptsLiens: true,
+    latitude: 37.300556,
+    longitude: -121.965278,
   },
   {
     id: 296,
@@ -3607,6 +3773,8 @@ const providers = [
     email: "admin@synergexmed.com",
     website: "https://www.synergexmed.com",
     acceptsLiens: true,
+    latitude: 37.240556,
+    longitude: -121.930278,
   },
   {
     id: 297,
@@ -3617,6 +3785,8 @@ const providers = [
     email: "admin@synergexmed.com",
     website: "https://www.synergexmed.com",
     acceptsLiens: true,
+    latitude: 37.566111,
+    longitude: -122.327222,
   },
   {
     id: 298,
@@ -3627,6 +3797,8 @@ const providers = [
     email: "referrals@casportsandspine.com",
     website: "https://casportsandspine.com",
     acceptsLiens: true,
+    latitude: 33.749167,
+    longitude: -117.867778,
   },
   {
     id: 299,
@@ -3637,6 +3809,8 @@ const providers = [
     email: "Aaronincpc@gmail.com",
     website: "https://www.centerpaincontrol.com",
     acceptsLiens: true,
+    latitude: 33.704167,
+    longitude: -117.879722,
   },
   {
     id: 300,
@@ -3647,6 +3821,8 @@ const providers = [
     email: "pi@usapaincare.com",
     website: "https://www.ifixspinemd.com",
     acceptsLiens: true,
+    latitude: 33.750556,
+    longitude: -117.838056,
   },
   {
     id: 301,
@@ -3657,6 +3833,8 @@ const providers = [
     email: "pi@usapaincare.com",
     website: "https://www.ifixspinemd.com",
     acceptsLiens: true,
+    latitude: 33.756389,
+    longitude: -117.834167,
   },
   {
     id: 302,
@@ -3667,6 +3845,8 @@ const providers = [
     email: "admin@lapainassociates.com",
     website: "https://lapainassociates.com",
     acceptsLiens: true,
+    latitude: 34.152222,
+    longitude: -118.450278,
   },
   {
     id: 303,
@@ -3677,6 +3857,8 @@ const providers = [
     email: "admin@synergexmed.com",
     website: "https://www.synergexmed.com",
     acceptsLiens: true,
+    latitude: 38.578056,
+    longitude: -121.486389,
   },
   {
     id: 304,
@@ -3687,6 +3869,8 @@ const providers = [
     email: "admin@lapainassociates.com",
     website: "https://lapainassociates.com",
     acceptsLiens: true,
+    latitude: 33.812222,
+    longitude: -118.345556,
   },
   {
     id: 305,
@@ -3697,6 +3881,8 @@ const providers = [
     email: "pi@usapaincare.com",
     website: "https://www.ifixspinemd.com",
     acceptsLiens: true,
+    latitude: 34.095278,
+    longitude: -117.657778,
   },
   {
     id: 306,
@@ -3707,6 +3893,8 @@ const providers = [
     email: "Aaronincpc@gmail.com",
     website: "https://www.centerpaincontrol.com",
     acceptsLiens: true,
+    latitude: 34.511389,
+    longitude: -117.326111,
   },
   {
     id: 307,
@@ -3717,6 +3905,8 @@ const providers = [
     email: "mj@revivepain.com",
     website: "https://revivepain.com",
     acceptsLiens: true,
+    latitude: 34.076389,
+    longitude: -117.908056,
   },
   // PHARMACY
   {
