@@ -4681,7 +4681,7 @@ const Providers = () => {
   }, [searchParams]);
 
   // Filter and sort providers based on search and location
-  const filteredProviders = useMemo(() => {
+  const { filteredProviders, isShowingClosest } = useMemo(() => {
     const specialtyFiltered = providers.filter((provider) => {
       return selectedSpecialty === "All Specialties" || provider.specialty === selectedSpecialty;
     });
@@ -4717,22 +4717,23 @@ const Providers = () => {
         });
 
         // If we found providers in the exact location, return them all
-        // Otherwise, fall back to showing 5 closest providers
         if (exactMatches.length > 0) {
-          return exactMatches;
+          return { filteredProviders: exactMatches, isShowingClosest: false };
         }
+        
+        // Fall back to showing 5 closest providers
+        return { filteredProviders: withDistances.slice(0, 5), isShowingClosest: true };
       }
 
-      // For fuzzy matches OR exact matches with no providers in that location,
-      // return the 5 closest providers
-      return withDistances.slice(0, 5);
+      // For fuzzy matches, return the 5 closest providers
+      return { filteredProviders: withDistances.slice(0, 5), isShowingClosest: true };
     }
 
     // No location search - filter by text
     const q = searchTerm.trim().toLowerCase();
-    if (!q) return specialtyFiltered;
+    if (!q) return { filteredProviders: specialtyFiltered, isShowingClosest: false };
 
-    return specialtyFiltered.filter((provider) => {
+    const textFiltered = specialtyFiltered.filter((provider) => {
       // Extract 3-5 digit zip partials from the search term
       const zipPartials = Array.from(q.matchAll(/\b(\d{3,5})\b/g), (m) => m[1]);
 
@@ -4751,6 +4752,8 @@ const Providers = () => {
       const matchesText = tokens.length === 0 || tokens.every((token) => haystacks.some((h) => h.includes(token)));
       return matchesText && matchesZip;
     });
+    
+    return { filteredProviders: textFiltered, isShowingClosest: false };
   }, [providers, selectedSpecialty, searchTerm, searchResults]);
 
   return (
@@ -4797,12 +4800,15 @@ const Providers = () => {
             </div>
           </div>
 
-          {/* Location search indicator - only show for fuzzy matches */}
-          {searchResults.userCoords && !searchResults.isExactMatch && (
+          {/* Location search indicator - show when displaying closest providers */}
+          {searchResults.userCoords && isShowingClosest && (
             <div className="mb-6 p-4 bg-primary/10 border border-primary/20 rounded-lg text-center">
               <p className="text-sm font-medium flex items-center justify-center gap-2">
                 <Navigation2 size={16} className="text-primary" />
-                Showing {filteredProviders.length} closest {selectedSpecialty !== "All Specialties" ? selectedSpecialty : ""} providers near <strong>{searchResults.userCoords.city}</strong>
+                {searchResults.isExactMatch 
+                  ? `No ${selectedSpecialty !== "All Specialties" ? selectedSpecialty + " " : ""}providers in ${searchResults.userCoords.city}, showing closest locations:`
+                  : `Showing ${filteredProviders.length} closest ${selectedSpecialty !== "All Specialties" ? selectedSpecialty : ""} providers near`
+                } {!searchResults.isExactMatch && <strong>{searchResults.userCoords.city}</strong>}
               </p>
             </div>
           )}
