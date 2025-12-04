@@ -4616,10 +4616,11 @@ const Providers = () => {
     const locationResult = searchCaliforniaLocation(q);
     
     if (locationResult.location && locationResult.confidence > 0.5) {
-      // Check if it's an exact city name, zip code, or alias match
+      // Check if it's an exact city name, zip code, alias, or clear partial match
       const isExactMatch = locationResult.matchType === 'exact' || 
                           locationResult.matchType === 'zip' || 
-                          locationResult.matchType === 'alias';
+                          locationResult.matchType === 'alias' ||
+                          locationResult.matchType === 'partial';
       
       return {
         locationResult,
