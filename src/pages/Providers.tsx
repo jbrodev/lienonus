@@ -2747,6 +2747,8 @@ const providers = [
     email: "amy@calieye.com",
     website: "https://calieye.com",
     acceptsLiens: true,
+    latitude: 34.680278,
+    longitude: -118.157222,
   },
   {
     id: 213,
@@ -2757,6 +2759,8 @@ const providers = [
     email: "amy@calieye.com",
     website: "https://calieye.com",
     acceptsLiens: true,
+    latitude: 33.840278,
+    longitude: -118.358056,
   },
   {
     id: 214,
@@ -2767,6 +2771,8 @@ const providers = [
     email: "amy@calieye.com",
     website: "https://anacapavision.com",
     acceptsLiens: true,
+    latitude: 34.263056,
+    longitude: -119.266667,
   },
   // ORTHOPEDICS
   {
@@ -2778,6 +2784,9 @@ const providers = [
     email: "schedule@unicaresurgery.com",
     website: "https://www.unicaresurgery.com",
     acceptsLiens: true,
+    note: "Language: Arabic; English",
+    latitude: 33.850278,
+    longitude: -117.924722,
   },
   {
     id: 216,
@@ -2788,6 +2797,8 @@ const providers = [
     email: "",
     website: "https://www.unicaresurgery.com",
     acceptsLiens: true,
+    latitude: 33.850556,
+    longitude: -117.924167,
   },
   {
     id: 217,
@@ -2798,6 +2809,8 @@ const providers = [
     email: "alicia@thespinemd.com",
     website: "https://www.thespinemd.com",
     acceptsLiens: true,
+    latitude: 34.138889,
+    longitude: -118.037222,
   },
   {
     id: 218,
@@ -2808,6 +2821,9 @@ const providers = [
     email: "alicia@thespinemd.com",
     website: "https://www.silverorthopedics.com",
     acceptsLiens: true,
+    note: "Records Department: reports@mdbillingoffice.com",
+    latitude: 34.160278,
+    longitude: -118.499444,
   },
   {
     id: 219,
@@ -2818,6 +2834,8 @@ const providers = [
     email: "info@deeortho.com",
     website: "https://www.deeorthosports.com",
     acceptsLiens: true,
+    latitude: 33.927056,
+    longitude: -118.353889,
   },
   {
     id: 220,
@@ -2828,6 +2846,9 @@ const providers = [
     email: "info@deeortho.com",
     website: "https://www.deeorthosports.com",
     acceptsLiens: true,
+    note: "*Minors: 10 and up",
+    latitude: 33.740556,
+    longitude: -117.998056,
   },
   {
     id: 221,
@@ -2838,6 +2859,8 @@ const providers = [
     email: "info@deeortho.com",
     website: "https://www.deeorthosports.com",
     acceptsLiens: true,
+    latitude: 34.052222,
+    longitude: -118.262778,
   },
   {
     id: 222,
@@ -2848,6 +2871,9 @@ const providers = [
     email: "adriana@c4or.com",
     website: "https://centerorthopedicrehab.com",
     acceptsLiens: true,
+    note: "*Only MVA",
+    latitude: 34.602778,
+    longitude: -118.156111,
   },
   {
     id: 223,
@@ -2858,6 +2884,8 @@ const providers = [
     email: "alicia@thespinemd.com",
     website: "https://www.silverorthopedics.com",
     acceptsLiens: true,
+    latitude: 37.705278,
+    longitude: -122.144167,
   },
   // PAIN MANAGEMENT
   {
