@@ -4328,6 +4328,8 @@ const providers = [
     email: "pi@kpfoot.com",
     website: "https://www.kpfoot.com",
     acceptsLiens: true,
+    latitude: 32.626389,
+    longitude: -117.080556,
   },
   {
     id: 401,
@@ -4338,6 +4340,8 @@ const providers = [
     email: "pi@kpfoot.com",
     website: "https://www.kpfoot.com",
     acceptsLiens: true,
+    latitude: 34.050278,
+    longitude: -117.312778,
   },
   {
     id: 402,
@@ -4348,6 +4352,8 @@ const providers = [
     email: "pi@kpfoot.com",
     website: "https://www.kpfoot.com",
     acceptsLiens: true,
+    latitude: 36.772222,
+    longitude: -119.733056,
   },
   {
     id: 403,
@@ -4358,6 +4364,8 @@ const providers = [
     email: "pi@kpfoot.com",
     website: "https://www.kpfoot.com",
     acceptsLiens: true,
+    latitude: 33.927056,
+    longitude: -118.353889,
   },
   {
     id: 404,
@@ -4368,6 +4376,8 @@ const providers = [
     email: "pi@kpfoot.com",
     website: "https://www.kpfoot.com",
     acceptsLiens: true,
+    latitude: 33.979167,
+    longitude: -117.380556,
   },
   {
     id: 405,
@@ -4378,6 +4388,8 @@ const providers = [
     email: "pi@kpfoot.com",
     website: "https://www.kpfoot.com",
     acceptsLiens: true,
+    latitude: 38.578889,
+    longitude: -121.465556,
   },
   {
     id: 406,
@@ -4388,6 +4400,8 @@ const providers = [
     email: "pi@kpfoot.com",
     website: "https://www.kpfoot.com",
     acceptsLiens: true,
+    latitude: 37.712778,
+    longitude: -122.144444,
   },
   {
     id: 407,
@@ -4398,6 +4412,8 @@ const providers = [
     email: "pi@kpfoot.com",
     website: "https://www.kpfoot.com",
     acceptsLiens: true,
+    latitude: 33.751389,
+    longitude: -117.833889,
   },
   {
     id: 408,
@@ -4408,6 +4424,8 @@ const providers = [
     email: "pi@kpfoot.com",
     website: "https://www.kpfoot.com",
     acceptsLiens: true,
+    latitude: 36.309167,
+    longitude: -115.126389,
   },
   // PSYCHOLOGIST
   {
@@ -4419,6 +4437,8 @@ const providers = [
     email: "raquelnealpremierforensic@gmail.com",
     website: "https://premierforensic.com",
     acceptsLiens: true,
+    latitude: 34.064722,
+    longitude: -118.373889,
   },
   {
     id: 410,
@@ -4429,6 +4449,8 @@ const providers = [
     email: "raquelnealpremierforensic@gmail.com",
     website: "https://premierforensic.com",
     acceptsLiens: true,
+    latitude: 34.052778,
+    longitude: -118.256667,
   },
   {
     id: 411,
@@ -4439,6 +4461,8 @@ const providers = [
     email: "raquelnealpremierforensic@gmail.com",
     website: "https://premierforensic.com",
     acceptsLiens: true,
+    latitude: 33.787222,
+    longitude: -117.894167,
   },
   // SPORTS MEDICINE
   {
