@@ -4609,24 +4609,27 @@ const Providers = () => {
   const searchResults = useMemo(() => {
     const q = searchTerm.trim();
     if (!q) {
-      return { locationResult: null, userCoords: null };
+      return { locationResult: null, userCoords: null, isExactMatch: false };
     }
     
     // Try to find a California location match
     const locationResult = searchCaliforniaLocation(q);
     
     if (locationResult.location && locationResult.confidence > 0.5) {
+      // Exact matches include 'exact', 'zip', and 'alias' match types
+      const isExactMatch = ['exact', 'zip', 'alias'].includes(locationResult.matchType);
       return {
         locationResult,
         userCoords: {
           lat: locationResult.location.lat,
           lng: locationResult.location.lng,
           city: locationResult.location.city
-        }
+        },
+        isExactMatch
       };
     }
     
-    return { locationResult: null, userCoords: null };
+    return { locationResult: null, userCoords: null, isExactMatch: false };
   }, [searchTerm]);
 
   const trackProviderClick = async (providerId: number, providerName: string, specialty: string, eventType: string) => {
@@ -4724,8 +4727,12 @@ const Providers = () => {
           }
           return { ...provider, distance: Infinity };
         })
-        .sort((a, b) => (a.distance ?? Infinity) - (b.distance ?? Infinity))
-        .slice(0, 5); // Return top 5 closest
+        .sort((a, b) => (a.distance ?? Infinity) - (b.distance ?? Infinity));
+      
+      // Only limit to 5 closest for fuzzy matches, show all for exact matches
+      if (!searchResults.isExactMatch) {
+        result = result.slice(0, 5);
+      }
     }
 
     return result;
@@ -4775,8 +4782,8 @@ const Providers = () => {
             </div>
           </div>
 
-          {/* Location search indicator */}
-          {searchResults.userCoords && (
+          {/* Location search indicator - only show for fuzzy matches */}
+          {searchResults.userCoords && !searchResults.isExactMatch && (
             <div className="mb-6 p-4 bg-primary/10 border border-primary/20 rounded-lg text-center">
               <p className="text-sm font-medium flex items-center justify-center gap-2">
                 <Navigation2 size={16} className="text-primary" />
