@@ -36,7 +36,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     const emailResponse = await resend.emails.send({
       from: "Lien On Us Medical Referrals <no-reply@lienonusmedical.com>",
-      to: ["referrals@lienonusmedical.com"],
+      to: ["jacobbroerman2@gmail.com"],
       replyTo: data.referringEmail,
       subject: `New Referral: ${data.patientName} - ${data.injuryType}`,
       html: `
