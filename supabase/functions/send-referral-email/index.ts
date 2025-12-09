@@ -35,7 +35,7 @@ const handler = async (req: Request): Promise<Response> => {
     console.log("Processing referral email for patient:", data.patientName);
 
     const emailResponse = await resend.emails.send({
-      from: "Lien On Us Medical Referrals <onboarding@resend.dev>",
+      from: "Lien On Us Medical Referrals <no-reply@lienonusmedical.com>",
       to: ["referrals@lienonusmedical.com"],
       replyTo: data.referringEmail,
       subject: `New Referral: ${data.patientName} - ${data.injuryType}`,
