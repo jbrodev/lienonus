@@ -831,17 +831,6 @@ const providers = [
   latitude: 34.135188,
   longitude: -117.258566
 }, {
-  id: 76,
-  name: "San Jose Auto Injury Clinic",
-  specialty: "Chiropractic",
-  location: "1150 S. Bascom Ave., Suite 17, San Jose, CA 95128",
-  phone: "(408) 295-5559",
-  email: "admin@sjaic.com",
-  website: "https://sjaic.com",
-  acceptsLiens: true,
-  latitude: 37.303188,
-  longitude: -121.932566
-}, {
   id: 77,
   name: "NorCal Health Group",
   specialty: "Chiropractic",
@@ -2219,17 +2208,6 @@ const providers = [
   acceptsLiens: true,
   latitude: 34.179722,
   longitude: -118.888056
-}, {
-  id: 194,
-  name: "Expert MRI",
-  specialty: "MRI",
-  location: "3440 Lomita Blvd., Suite 151, Torrance, CA 90505",
-  phone: "(877) 674-8888",
-  email: "scheduling@expertmri.com",
-  website: "https://expertmri.com",
-  acceptsLiens: true,
-  latitude: 33.812222,
-  longitude: -118.345556
 }, {
   id: 195,
   name: "Precise Imaging",
