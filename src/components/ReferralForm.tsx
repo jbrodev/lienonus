@@ -244,6 +244,7 @@ const ReferralForm = () => {
                         <SelectItem value="physical-therapy">Physical Therapy</SelectItem>
                         <SelectItem value="podiatrist">Podiatrist</SelectItem>
                         <SelectItem value="psychologist">Psychologist</SelectItem>
+                        <SelectItem value="sports-medicine">Sports Medicine</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
