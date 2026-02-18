@@ -3774,18 +3774,6 @@ const providers = [
 },
 // PHARMACY
 {
-  id: 350,
-  name: "Caspian Pharmacy",
-  specialty: "Pharmacy",
-  location: "19745 Ventura Blvd., Woodland Hills, CA 91364",
-  phone: "(818) 444-3456",
-  email: "claims@caspianpharmacy.com",
-  website: "",
-  acceptsLiens: true,
-  latitude: 34.164167,
-  longitude: -118.602778
-},
-{
   id: 438,
   name: "Glenoaks Rx Pharmacy",
   specialty: "Pharmacy",
